@@ -120,7 +120,7 @@ VALUES
 ('Anna Andersson', 'Storgatan 1', '0701234567', 'anna@example.com', 199.90, 'EX123'),
 ('Björn Björk', 'Lillgatan 2', '0709876543', 'bjorn@example.com', 299.90, 'EX456');
 
-SELECT * FROM Kund
+SELECT * FROM Kund;
 UPDATE Kund
 SET Namn = 'Diyar',
     Adress = 'Örebro',
@@ -134,7 +134,7 @@ SELECT * FROM Kund;
 
 
 
-SELECT * FROM Kund
+SELECT * FROM Kund;
 
 UPDATE Kund
 SET Namn = 'Alex',
