@@ -24,13 +24,13 @@ import java.util.regex.Pattern;
         return Pattern.matches(datumRegex, datum);
     }
 
-        // Validerar lösenord för exakt 11 tecken, minst en stor bokstav, en liten bokstav och en siffra
+        // Validerar lösenord för exakt 11 tecken, minst en stor bokstav, en liten bokstav och en siffra.
     public static boolean isValidLosenord(String losenord) { 
         String losenordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{11}$";
         return losenord != null && Pattern.matches(losenordRegex, losenord);
     }
 
-        //Validerar telefonnummer
+        //Validerar telefonnummer. Tillåtna siffror 0-9. 7-15 tecken långt. 
     public static boolean isValidTelefonnummer(String telefonnummer) {
     return telefonnummer != null && telefonnummer.trim().matches("^[0-9]{7,15}$");
     }
@@ -51,16 +51,26 @@ import java.util.regex.Pattern;
         public static boolean isNumeriskEllerTom(String nummerInString) {
     String numeriskEllerTomRegex = "^(\\d+(\\.\\d*)?)?$";
     return Pattern.matches(numeriskEllerTomRegex, nummerInString);
+     
     }
         
-        //Validerar att textruta inte är tom eller endast består av mellanslag
+        //Validerar att textruta inte är tom eller endast består av mellanslag.
     public static boolean isNotEmpty(String input) {
     return input != null && !input.trim().isEmpty();
+       
     }
     
-     // Validerar en numerisk inmatning ().
+        // Validerar att inmatning är numerisk.
     public static boolean isNumerisk(String nummerInString) {
         String numeriskRegex = "^\\d+(\\.\\d+)?$";
         return Pattern.matches(numeriskRegex, nummerInString);
+       
     }
+    
+        // Validering för att matcha decimaltal med punkt eller komma för separering.
+    public static boolean isValidDecimal(String input) {
+        String decimalRegex = "^[0-9]+([.,][0-9]+)?$";
+        return input != null && input.matches(decimalRegex);
+        
+}
 }
