@@ -58,9 +58,15 @@ import java.util.regex.Pattern;
     return input != null && !input.trim().isEmpty();
     }
     
-     // Validerar en numerisk inmatning ().
+     // Validerar en numerisk inmatning.
     public static boolean isNumerisk(String nummerInString) {
         String numeriskRegex = "^\\d+(\\.\\d+)?$";
         return Pattern.matches(numeriskRegex, nummerInString);
     }
+    
+    // Validering för att matcha decimaltal med punkt eller komma som separator.
+    public static boolean isValidDecimal(String input) {
+    String decimalRegex = "^[0-9]+([.,][0-9]+)?$";
+    return input != null && input.matches(decimalRegex);
+}
 }
