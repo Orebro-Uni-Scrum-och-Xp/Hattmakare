@@ -145,15 +145,14 @@ values (1, 'Otto', 'Hattmakare',2, 'otto@oru.se', '123',null),
 insert into material
 values (1,'Kashmir','20','5000000','Meter')
 
-insert into ordrar
-values (1,'Inte startad','2026-01-01',true,1,1)
-
-
 insert into kund
 values (1,'Diyar','Dynamit','Vivalla','Diyar@oru.se','112')
 
+
+
 insert into ordrar
-values (1,'Inte påbörjad','2026-01-01',false,1)
+values (1,'Inte startad','2026-01-01',true,1);
+
 
 insert into produkt
 values (1,'Studentmössa',499,false,false)
