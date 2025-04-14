@@ -3,18 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package hattmakarna;
+import javax.swing.JOptionPane;
+import oru.inf.InfDB;
+import oru.inf.InfException; 
 
 /**
  *
  * @author minna
  */
 public class Kundinfo extends javax.swing.JFrame {
-
+private InfDB idb;
     /**
      * Creates new form Kundinfo
      */
-    public Kundinfo() {
+    public Kundinfo(InfDB idb) {
         initComponents();
+        this.idb = idb;
     }
 
     /**
@@ -27,7 +31,7 @@ public class Kundinfo extends javax.swing.JFrame {
     private void initComponents() {
 
         btnOk = new javax.swing.JButton();
-        tfdNamn = new javax.swing.JTextField();
+        tfdEfternamn = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         tfdEpost = new javax.swing.JTextField();
@@ -36,6 +40,8 @@ public class Kundinfo extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        tfdFörnamn = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,7 +57,7 @@ public class Kundinfo extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Namn");
+        jLabel1.setText("Efternamn");
 
         jLabel2.setText("Epost");
 
@@ -61,6 +67,8 @@ public class Kundinfo extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Fyll i information för att lägga till en ny kund");
+
+        jLabel6.setText("Förnamn");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,20 +82,19 @@ public class Kundinfo extends javax.swing.JFrame {
                             .addComponent(btnOk)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(67, 67, 67))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)))
+                                .addGap(44, 44, 44)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(tfdAdress, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                    .addComponent(tfdNamn, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfdAdress)
+                                    .addComponent(tfdEfternamn, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tfdEpost, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfdTelefon, javax.swing.GroupLayout.Alignment.LEADING)))))
+                                    .addComponent(tfdFörnamn)
+                                    .addComponent(tfdTelefon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -98,9 +105,13 @@ public class Kundinfo extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfdNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(tfdFörnamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfdEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -108,12 +119,12 @@ public class Kundinfo extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfdTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(tfdAdress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfdAdress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(tfdTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52)
                 .addComponent(btnOk)
                 .addGap(25, 25, 25))
@@ -127,7 +138,49 @@ public class Kundinfo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOkActionPerformed
 
     private void btnOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseClicked
-        // TODO add your handling code here:
+     //Hämtar nya ifyllda värden
+      String nyttFörnamn = tfdFörnamn.getText();
+      String nyttEfternamn = tfdEfternamn.getText();
+      String nyttEmail = tfdEpost.getText();
+      String nyttAdress = tfdAdress.getText();
+      String nyttTel = tfdTelefon.getText();
+      
+        if (!validering.isValidNamn(nyttFörnamn) || !validering.isValidNamn(nyttEfternamn)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Ogiltigt för- eller efternamn! Endast bokstäver och minst två tecken långt är tillåtna.");
+            return;
+        }
+        if (!validering.isValidePost(nyttEmail)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Ogiltig e-postadress! En Epostadress måste vara formaterad enligt exempel: förnamn.efternamn@domän.");
+            return;
+        }
+        if (!validering.isValidTelefonnummer(nyttTel)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Telefon numret måste bestå av 7-15 siffror, inga tecken är tillåtna.");
+            return;
+        }
+        if (!validering.isValidAdress(nyttAdress)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Adressen får inte vara tom. Vänligen fyll i en giltig adress.");
+            return;
+        } 
+      
+      
+      try {
+        // Hämta nästa lediga autoinkrement-ID 
+        String nyttKundID = idb.getAutoIncrement("Kund", "KundID");
+        
+         // Lägg till ny anställd i anstalld-tabellen
+        String laggTillKund = "INSERT INTO Kund (KundID, Förnamn, Efternamn, Adress, Email, Telefonnummer ) " +
+                "VALUES (" + nyttKundID + ", '" + nyttFörnamn + "', '" + nyttEfternamn + "', '" + nyttAdress + "', '" + nyttEmail + "', '" + 
+                nyttTel + "')";
+        
+         idb.insert(laggTillKund);
+         
+           // Bekräftelse och felmeddelande
+        JOptionPane.showMessageDialog(this, "Ny kund har lagts till!");
+    } catch (InfException e) {
+        JOptionPane.showMessageDialog(this, "Fel vid inmatning av data: " + e.getMessage());
+    }                       
+
+     
     }//GEN-LAST:event_btnOkMouseClicked
 
     /**
@@ -160,7 +213,7 @@ public class Kundinfo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Kundinfo().setVisible(true);
+                //new Kundinfo().setVisible(true);
             }
         });
     }
@@ -172,9 +225,11 @@ public class Kundinfo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField tfdAdress;
+    private javax.swing.JTextField tfdEfternamn;
     private javax.swing.JTextField tfdEpost;
-    private javax.swing.JTextField tfdNamn;
+    private javax.swing.JTextField tfdFörnamn;
     private javax.swing.JTextField tfdTelefon;
     // End of variables declaration//GEN-END:variables
 }
