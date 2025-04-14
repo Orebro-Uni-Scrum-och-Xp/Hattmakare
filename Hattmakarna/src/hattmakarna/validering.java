@@ -68,5 +68,10 @@ import java.util.regex.Pattern;
     public static boolean isValidDecimal(String input) {
     String decimalRegex = "^[0-9]+([.,][0-9]+)?$";
     return input != null && input.matches(decimalRegex);
-}
+    }
+    
+    // Validerar att ett värde är 1 eller 0.
+    public static boolean isValidBooleanValue(String input) {
+    return input != null && input.trim().matches("^[01]$");
+    }
 }
