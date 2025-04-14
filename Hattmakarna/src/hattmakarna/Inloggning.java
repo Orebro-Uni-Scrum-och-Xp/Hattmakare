@@ -108,7 +108,7 @@ private InfDB idb;
         }
         else {
             if (lösenord.equals(dblosen)){
-                new Huvudmeny().setVisible(true);
+                new Huvudmeny(idb).setVisible(true);
             }
         }
     }//GEN-LAST:event_BtnloggainActionPerformed
