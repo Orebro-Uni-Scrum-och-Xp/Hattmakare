@@ -258,7 +258,7 @@ public class SkapaFraktsedel extends javax.swing.JFrame {
         String insertQuery = "INSERT INTO frakt (avsändare, adress, vikt, beskrivning, mottagare, pris, oid)"
                 + "values( '" + avsändare + "','" + adress + "','" +
                 vikt + "','" + beskrivning + "','" + dbKundId + "','" + 
-                summa + "','" + OID + "'";
+                summa + "','" + OID + "')";
         
         try{
             idb.insert(insertQuery);
