@@ -17,7 +17,7 @@ public class SpecialbeställningMaterial extends javax.swing.JFrame {
     /**
      * Creates new form SpecialbeställningMaterial
      */
-    public SpecialbeställningMaterial(InfDB idb) {
+    public SpecialbeställningMaterial(InfDB idb, String produktID) {
         initComponents();
         this.idb = idb;
         this.produktID = produktID;

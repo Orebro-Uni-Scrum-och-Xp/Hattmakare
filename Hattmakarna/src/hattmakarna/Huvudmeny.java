@@ -83,7 +83,12 @@ public class Huvudmeny extends javax.swing.JFrame {
 
         jButton7.setText("jButton7");
 
-        jButton8.setText("jButton8");
+        jButton8.setText("Fraktsedel");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("Skapa Order");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -196,13 +201,18 @@ public class Huvudmeny extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
             // TODO add your handling code here:
-            new SpecialbeställningMaterial(idb).setVisible(true);
+            new Specialbeställning(idb).setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         new AnpassaLagerfordaModeller(idb).setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        new Fraktsedel(idb).setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
