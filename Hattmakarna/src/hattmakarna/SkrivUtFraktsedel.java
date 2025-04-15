@@ -221,6 +221,7 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
             Font headerFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 24);
             Font bodyFont = FontFactory.getFont(FontFactory.HELVETICA, 18);
 
+            double d_pris = Double.parseDouble(frakt.get("Pris"));
 
             // Ange var du vill spara PDF-filen
             String path = System.getProperty("user.home") + "/Desktop/fraktinfo.pdf";
@@ -239,8 +240,10 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
             document.add(new Paragraph("Vikt: " + frakt.get("vikt"), bodyFont));
             document.add(new Paragraph("Beskrivning: " + frakt.get("Beskrivning"), bodyFont));
             document.add(new Paragraph("Pris: " + frakt.get("Pris"), bodyFont));
+            document.add(new Paragraph("Moms: " + d_pris * 0.25 , bodyFont));
+            document.add(new Paragraph("Pris inkl. moms: " + d_pris * 1.25, bodyFont));
             document.add(new Paragraph("Mottagare: " + förnamn + " " + efternamn, bodyFont));
-
+            document.add(new Paragraph("Export kod: " + frakt.get("exportkod"), bodyFont));
             // Stäng dokumentet
             document.close();
 
