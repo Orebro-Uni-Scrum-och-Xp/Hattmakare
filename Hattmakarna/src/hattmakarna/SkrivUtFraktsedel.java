@@ -232,7 +232,7 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
             document.open();
 
             // Lägg till innehållet
-            document.add(new Paragraph("Fraktinformation", headerFont));
+            document.add(new Paragraph("Fraktinformation.", headerFont));
             document.add(new Paragraph("--------------------------", bodyFont));
             document.add(new Paragraph("Frakt-ID: " + fraktId, bodyFont));
             document.add(new Paragraph("Avsändare: " + frakt.get("Avsändare"), bodyFont));
@@ -244,6 +244,8 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
             document.add(new Paragraph("Pris ink. moms (25%): " + d_pris * 1.25, bodyFont));
             document.add(new Paragraph("Mottagare: " + förnamn + " " + efternamn, bodyFont));
             document.add(new Paragraph("Export kod: " + frakt.get("exportkod"), bodyFont));
+            
+            // test
 
             // Stäng dokumentet
             document.close();
