@@ -225,7 +225,8 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
             // Ange var du vill spara PDF-filen
             String path = System.getProperty("user.home") + "/Desktop/fraktinfo.pdf";
             PdfWriter.getInstance(document, new FileOutputStream(path));
-
+            
+            double d_pris = Double.parseDouble(frakt.get("Pris"));
 
             // Öppna dokumentet för att börja skriva
             document.open();
@@ -239,7 +240,10 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
             document.add(new Paragraph("Vikt: " + frakt.get("vikt"), bodyFont));
             document.add(new Paragraph("Beskrivning: " + frakt.get("Beskrivning"), bodyFont));
             document.add(new Paragraph("Pris: " + frakt.get("Pris"), bodyFont));
+            document.add(new Paragraph("Moms (25%): " + d_pris * 0.25, bodyFont));
+            document.add(new Paragraph("Pris ink. moms (25%): " + d_pris * 1.25, bodyFont));
             document.add(new Paragraph("Mottagare: " + förnamn + " " + efternamn, bodyFont));
+            document.add(new Paragraph("Export kod: " + frakt.get("exportkod"), bodyFont));
 
             // Stäng dokumentet
             document.close();
