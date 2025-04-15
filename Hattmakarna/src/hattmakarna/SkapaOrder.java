@@ -512,7 +512,7 @@ public class SkapaOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnAndra1ActionPerformed
 
     private void BtnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTillbakaActionPerformed
-        //new Huvudmeny().setVisible(true);
+        new Huvudmeny().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnTillbakaActionPerformed
 
