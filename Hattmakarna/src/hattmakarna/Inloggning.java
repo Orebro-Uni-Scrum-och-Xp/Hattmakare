@@ -123,12 +123,11 @@ try {
 }
 
 if (lösenord.equals(dblosen)) {
-    if (dbbehörighet == 2) {  // Jämför med ett heltal
+    if (dbbehörighet == 2) { 
         new AdminMeny(idb).setVisible(true);
     } else {
         new Huvudmeny(idb).setVisible(true);
     }
-    this.dispose(); // Stänger inloggningsfönstret
 } else {
     lblfelmeddelande.setText("Fel lösenord, försök igen.");
 }
