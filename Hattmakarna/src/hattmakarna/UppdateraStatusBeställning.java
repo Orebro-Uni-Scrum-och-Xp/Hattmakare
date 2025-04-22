@@ -25,6 +25,7 @@ public class UppdateraStatusBeställning extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         loadData();
+        tblOrdrar.setAutoCreateRowSorter(true);
     }
     
      private void loadData() {
@@ -103,6 +104,7 @@ public class UppdateraStatusBeställning extends javax.swing.JFrame {
                 "Ordernummer", "Status", "Datum", "Express", "Kundkontakt"
             }
         ));
+        tblOrdrar.setRowSorter(tblOrdrar.getRowSorter());
         jScrollPane1.setViewportView(tblOrdrar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

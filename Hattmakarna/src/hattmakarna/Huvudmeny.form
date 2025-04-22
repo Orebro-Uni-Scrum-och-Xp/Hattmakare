@@ -185,7 +185,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnUpStatusOrdrar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Uppdatera status p&#xe5; ordrar"/>
+        <Property name="text" type="java.lang.String" value="Order Hantering"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpStatusOrdrarActionPerformed"/>
