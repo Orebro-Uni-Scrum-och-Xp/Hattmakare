@@ -32,15 +32,13 @@ private InfDB idb;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblEmail = new javax.swing.JLabel();
         BtnSök = new javax.swing.JButton();
         Tfemail = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        Combobox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        lblEmail.setText("Email");
 
         BtnSök.setText("Sök");
         BtnSök.addActionListener(new java.awt.event.ActionListener() {
@@ -51,10 +49,7 @@ private InfDB idb;
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Förnamn", "Efternamn", "Adress", "OrderID", "Status", "Datum"
@@ -65,14 +60,21 @@ private InfDB idb;
             jTable1.getColumnModel().getColumn(2).setResizable(false);
         }
 
+        Combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Email", "Datum", " " }));
+        Combobox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboboxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(90, 90, 90)
+                .addComponent(Combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
                 .addComponent(Tfemail, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(82, 82, 82)
                 .addComponent(BtnSök)
@@ -89,7 +91,7 @@ private InfDB idb;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnSök, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Tfemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblEmail))
+                    .addComponent(Combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(46, Short.MAX_VALUE))
@@ -99,62 +101,112 @@ private InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnSökActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSökActionPerformed
-                                     
-                                         
-                                     
-    try {
-        String email = Tfemail.getText();
-        String kundIDFraga = "SELECT KundID FROM kund WHERE Email = '" + email + "'";
-        String kundID = idb.fetchSingle(kundIDFraga);
-
-        if (kundID != null) {
+                  ((DefaultTableModel) jTable1.getModel()).setRowCount(0);                   
+                 String SelectedCombo = (String) Combobox.getSelectedItem();                    
+                
+                 if ("Email".equalsIgnoreCase(SelectedCombo)) {
             
-            String kundInfoFraga = "SELECT Förnamn, Efternamn, Adress FROM kund WHERE KundID = " + kundID;
-            HashMap<String, String> kundInfo = idb.fetchRow(kundInfoFraga);
 
-            String fornamn = kundInfo.get("Förnamn");
-            String efternamn = kundInfo.get("Efternamn");
-            String adress = kundInfo.get("Adress");
+                String email = Tfemail.getText();
+                String kundIDFraga = "SELECT KundID FROM kund WHERE Email = '" + email + "'";
+                String kundID = null;
+                try{
+                kundID = idb.fetchSingle(kundIDFraga);
+                }
+                catch (InfException ex){
+                      JOptionPane.showMessageDialog(null, "1");
+                }
+                if (kundID != null) {
 
-           
-            String orderFraga = "SELECT OID, Status, Datum FROM ordrar WHERE KundID = " + kundID;
-            ArrayList<HashMap<String, String>> orderLista = idb.fetchRows(orderFraga);
+                    String kundInfoFraga = "Select * from kund WHERE KundID = '" + kundID + "'";
+                    HashMap<String, String> kundInfo = new HashMap<>();
+                    try{
+                        
+                    
+                    kundInfo = idb.fetchRow(kundInfoFraga);
+                    
+                    }
+                    catch (InfException ex){
+                        JOptionPane.showMessageDialog(null, "2");
+                    }
+                    String fornamn = kundInfo.get("Förnamn");
+                    String efternamn = kundInfo.get("Efternamn");
+                    String adress = kundInfo.get("Adress");
 
-            
-            DefaultTableModel model = new DefaultTableModel();
-            model.addColumn("Förnamn");
-            model.addColumn("Efternamn");
-            model.addColumn("Adress");
-            model.addColumn("OrderID");
-            model.addColumn("Status");
-            model.addColumn("Datum");
+                    String orderFraga = "SELECT * FROM ordrar WHERE KundID = '" + kundID + "'";
+                    ArrayList<HashMap<String, String>> orderLista = new ArrayList<>();
+                    try{
+                    orderLista = idb.fetchRows(orderFraga);
+                    }
+                    catch (InfException ex){
+                        JOptionPane.showMessageDialog(null, "3");
+                    }
 
-           
-            for (HashMap<String, String> rad : orderLista) {
-                String oid = rad.get("OID");
-                String status = rad.get("Status");
-                String datum = rad.get("Datum");
+                    for (HashMap<String, String> rad : orderLista) {
+                        String oid = rad.get("OID");
+                        String status = rad.get("Status");
+                        String datum = rad.get("Datum");
 
-                model.addRow(new Object[]{fornamn, efternamn, adress, oid, status, datum});
+                        ((DefaultTableModel) jTable1.getModel()).addRow(new Object[]{fornamn, efternamn, adress, oid, status, datum});           
+                    }
+
+                    
+
+                } else  {
+                    JOptionPane.showMessageDialog(null, "Ingen kund hittades med den e-postadressen.");
+                }
+
+          
             }
 
-           
-            jTable1.setModel(model);
+        
+                 else   {  
 
-        } else {
-            JOptionPane.showMessageDialog(null, "Ingen kund hittades med den e-postadressen.");
+                String Datum = Tfemail.getText();
+ 
+                    String orderFraga = "Select * from ordrar WHERE Datum = '" + Datum + "'";
+                    
+                    ArrayList<HashMap<String, String>> orderLista = new ArrayList<>();
+                    try{
+                        orderLista = idb.fetchRows(orderFraga);
+                    }
+                    catch (InfException ex) {
+                         JOptionPane.showMessageDialog(null, "Fel vid Hämtning av Data 123" + ex.getMessage());
+                        
+                    }
+                        
+                    for (HashMap<String, String> rad : orderLista) {
+                        String kundID = rad.get("KundID");
+                        String oid = rad.get("OID");
+                        String status = rad.get("Status");
+                        String datum = rad.get("Datum");
+                        String Kundinfo = "Select * from kund WHERE kundID = '" + kundID + "'";
+                        HashMap<String, String> Kundinformation = new HashMap<>();
+                        
+                        try{
+                            Kundinformation = idb.fetchRow(Kundinfo);
+                        }
+                        catch (InfException ex){
+                                JOptionPane.showMessageDialog(null, "Fel vid Hämtning av Data123 " + ex.getMessage());
+                        }
+                        String förnamn = Kundinformation.get("Förnamn");
+                        String efternamn = Kundinformation.get("Efternamn");
+                        String adress = Kundinformation.get("Adress");
+                        
+                        ((DefaultTableModel) jTable1.getModel()).addRow(new Object[]{förnamn, efternamn, adress, oid, status, datum});
+                    
+
+                }
+
+             
+            
         }
 
-    } catch (InfException e) {
-        JOptionPane.showMessageDialog(null, "Fel: " + e.getMessage());
-        
-    }
-
-
-   
-                        
-
     }//GEN-LAST:event_BtnSökActionPerformed
+
+    private void ComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboboxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,9 +245,9 @@ private InfDB idb;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnSök;
+    private javax.swing.JComboBox<String> Combobox;
     private javax.swing.JTextField Tfemail;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblEmail;
     // End of variables declaration//GEN-END:variables
 }
