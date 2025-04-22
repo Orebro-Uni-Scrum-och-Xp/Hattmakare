@@ -90,27 +90,48 @@ private InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnloggainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnloggainActionPerformed
-        String email = tfemail.getText();
-        String lösenord = tflosenord.getText();
-        String sqlemail = "SELECT Email from personal WHERE Email = '" + email + "'";
-        String sqllosen = "Select Lösenord from personal WHERE Email = '" + email +"'";
-        String dbemail = null;
-        String dblosen = null;
-        try {
-            dbemail = idb.fetchSingle(sqlemail);
-            dblosen = idb.fetchSingle(sqllosen);
-            
-        } catch (InfException ex){
-        lblfelmeddelande.setText("Fel vid hämtning av Data");
-        }
-        if (dbemail.isEmpty()){
-            lblfelmeddelande.setText("Användarnamnet finns ej");
-        }
-        else {
-            if (lösenord.equals(dblosen)){
-                new Huvudmeny(idb).setVisible(true);
-            }
-        }
+   String email = tfemail.getText();
+   String lösenord = tflosenord.getText();
+   String sqlemail = "SELECT Email FROM personal WHERE Email = '" + email + "'";
+   String sqllosen = "SELECT Lösenord FROM personal WHERE Email = '" + email + "'";
+   String sqlbehörighet = "SELECT Behörighetsnivå FROM personal WHERE Email = '" + email + "'";
+   String dbemail = null;
+   String dblosen = null;
+    int dbbehörighet;  
+
+try {
+    dbemail = idb.fetchSingle(sqlemail);
+} catch (InfException ex) {
+    lblfelmeddelande.setText("Fel vid hämtning av data");
+    return;
+}
+
+if (dbemail == null) {
+    lblfelmeddelande.setText("Användarnamnet finns ej");
+    return;
+}
+
+try {
+    dblosen = idb.fetchSingle(sqllosen);
+    dbbehörighet = Integer.parseInt(idb.fetchSingle(sqlbehörighet));
+} catch (InfException ex) {
+    lblfelmeddelande.setText("Fel vid hämtning av data");
+    return;
+} catch (NumberFormatException ex) {
+    lblfelmeddelande.setText("Felaktigt format på behörighetsnivå");
+    return;
+}
+
+if (lösenord.equals(dblosen)) {
+    if (dbbehörighet == 2) { 
+        new AdminMeny(idb).setVisible(true);
+    } else {
+        new Huvudmeny(idb).setVisible(true);
+    }
+} else {
+    lblfelmeddelande.setText("Fel lösenord, försök igen.");
+}
+
     }//GEN-LAST:event_BtnloggainActionPerformed
     
     /**
@@ -156,4 +177,5 @@ private InfDB idb;
     private javax.swing.JLabel txtemail;
     private javax.swing.JLabel txtlösen;
     // End of variables declaration//GEN-END:variables
+
 }
