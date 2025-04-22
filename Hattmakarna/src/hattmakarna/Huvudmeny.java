@@ -118,7 +118,7 @@ public class Huvudmeny extends javax.swing.JFrame {
 
         jButton11.setText("jButton11");
 
-        btnUpStatusOrdrar.setText("Uppdatera status på ordrar");
+        btnUpStatusOrdrar.setText("Order Hantering");
         btnUpStatusOrdrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpStatusOrdrarActionPerformed(evt);
