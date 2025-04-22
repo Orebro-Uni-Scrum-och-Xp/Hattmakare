@@ -41,9 +41,9 @@
               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jButton9" max="32767" attributes="0"/>
-                  <Component id="jButton10" pref="150" max="32767" attributes="0"/>
+                  <Component id="jButton10" max="32767" attributes="0"/>
                   <Component id="jButton11" max="32767" attributes="0"/>
-                  <Component id="jButton12" max="32767" attributes="0"/>
+                  <Component id="btnUpStatusOrdrar" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="267" max="-2" attributes="0"/>
@@ -88,7 +88,7 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnSpecialBeställning" pref="51" max="32767" attributes="0"/>
                   <Component id="jButton8" max="32767" attributes="0"/>
-                  <Component id="jButton12" max="32767" attributes="0"/>
+                  <Component id="btnUpStatusOrdrar" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="60" max="32767" attributes="0"/>
           </Group>
@@ -183,10 +183,13 @@
         <Property name="text" type="java.lang.String" value="jButton11"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton12">
+    <Component class="javax.swing.JButton" name="btnUpStatusOrdrar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton12"/>
+        <Property name="text" type="java.lang.String" value="Uppdatera status p&#xe5; ordrar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpStatusOrdrarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>

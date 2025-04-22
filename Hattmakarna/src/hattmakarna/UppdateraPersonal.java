@@ -18,24 +18,15 @@ import java.util.HashMap;
 
 public class UppdateraPersonal extends javax.swing.JFrame {
 private static InfDB idb;
-private DefaultTableModel tableModel;
     /**
      * Creates new form UppdateraPersonal
      */
     public UppdateraPersonal(InfDB idb) {
-         this.idb = idb;
+        this.idb = idb;
         initComponents();
-    tableModel = new DefaultTableModel(new String[]{"Förnamn", "Efternamn", "Email", "Lösenord", "Behörighetsnivå"}, 0) {
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            return true; // Gör alla celler redigerbara
-        }
-    };
-
-    jTable1.setModel(tableModel);
-    
-    loadData();
+        loadData();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,15 +46,20 @@ private DefaultTableModel tableModel;
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Förnamn", "Efternamn", "Email", "Lösenord", "Behörighetsnivå"
+                "Personal nr", "Förnamn", "Efternamn", "Email", "Lösenord", "Behörighetsnivå"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
@@ -105,18 +101,18 @@ private DefaultTableModel tableModel;
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addGap(65, 65, 65))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void loadData() {
         try {
-            String sql = "SELECT Förnamn, Efternamn, Email, Lösenord, Behörighetsnivå FROM personal";
+            String sql = "SELECT * FROM personal";
             ArrayList<HashMap<String, String>> result = idb.fetchRows(sql);
-            tableModel.setRowCount(0);
             for (HashMap<String, String> rad : result) {
-                tableModel.addRow(new Object[]{
+                ((DefaultTableModel) jTable1.getModel()).addRow(new Object[]{
+                        rad.get("PID"),
                         rad.get("Förnamn"),
                         rad.get("Efternamn"),
                         rad.get("Email"),
@@ -131,15 +127,20 @@ private DefaultTableModel tableModel;
      private void updatePersonal() {
           int row = jTable1.getSelectedRow();
     if (row != -1) {
-        String email = (String) jTable1.getValueAt(row, 2);
-        String lösenord = (String) jTable1.getValueAt(row, 3);
+        String PID = (String) jTable1.getValueAt(row, 0);
+        String förnamn = (String) jTable1.getValueAt(row, 1);
+        String efternamn = (String) jTable1.getValueAt(row, 2);
+        String email = (String) jTable1.getValueAt(row, 3);
+        String lösenord = (String) jTable1.getValueAt(row, 4);
+        String behörighet = (String) jTable1.getValueAt(row, 5);
 
-        String safeEmail = email.replace("'", "''");
-        String safeLosenord = lösenord.replace("'", "''");
 
-        String sql = "UPDATE personal SET Lösenord = '" + safeLosenord + "' WHERE Email = '" + safeEmail + "'";
+        // nu ändrar den alla vi måste hämta radens 
+        String sql = "UPDATE personal SET Förnamn = '" + förnamn + "', Efternamn = '" + efternamn + "', Email = '" + email + "', Lösenord = '" + lösenord + "', Behörighetsnivå = '" +
+                behörighet + "' WHERE PID = '" + PID + "'";
         try {
             idb.update(sql);  // ← rätt metod!
+            ((DefaultTableModel) jTable1.getModel()).setRowCount(0);
             loadData();
         } catch (InfException e) {
             e.printStackTrace();
