@@ -41,7 +41,7 @@ public class Huvudmeny extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        btnUpStatusOrdrar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -118,7 +118,12 @@ public class Huvudmeny extends javax.swing.JFrame {
 
         jButton11.setText("jButton11");
 
-        jButton12.setText("jButton12");
+        btnUpStatusOrdrar.setText("Uppdatera status på ordrar");
+        btnUpStatusOrdrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpStatusOrdrarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("OBS OBS OBS: placera inte om några knappar alls! ni kan använda knapparna för att länka vidare till era egna klasser. döp om dom till något relevant för era egna klasser");
 
@@ -142,9 +147,9 @@ public class Huvudmeny extends javax.swing.JFrame {
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnUpStatusOrdrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -180,7 +185,7 @@ public class Huvudmeny extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnSpecialBeställning, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                     .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnUpStatusOrdrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
 
@@ -237,6 +242,11 @@ public class Huvudmeny extends javax.swing.JFrame {
         new MaterialLista(idb).setVisible(true);
     }//GEN-LAST:event_btnMaterialListaActionPerformed
 
+    private void btnUpStatusOrdrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpStatusOrdrarActionPerformed
+        // TODO add your handling code here:
+        new UppdateraStatusBeställning(idb).setVisible(true);
+    }//GEN-LAST:event_btnUpStatusOrdrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -276,10 +286,10 @@ public class Huvudmeny extends javax.swing.JFrame {
     private javax.swing.JButton btnMaterialBeställning;
     private javax.swing.JButton btnMaterialLista;
     private javax.swing.JButton btnSpecialBeställning;
+    private javax.swing.JButton btnUpStatusOrdrar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
