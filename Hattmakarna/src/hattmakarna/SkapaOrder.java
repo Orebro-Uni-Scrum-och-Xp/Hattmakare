@@ -4,6 +4,10 @@
  */
 package hattmakarna;
 
+import java.util.List;
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import oru.inf.InfDB;
@@ -427,6 +431,8 @@ public class SkapaOrder extends javax.swing.JFrame {
         return;
 }   
         
+        
+        
         // Skapar SQL-frågan för att lägga till en order
         try { 
         
@@ -434,6 +440,24 @@ public class SkapaOrder extends javax.swing.JFrame {
                      "VALUES ('" + ID + "', '" + Status + "', '" + Datum + "', " + Express + ",'" + KundID + "')";
 
         idb.insert(sql);
+        
+        String produktPrisSql = "SELECT p.Pris, f.antal FROM produkt " +
+                                "JOIN försäljning f on p.ProduktID = f.ProduktID " +
+                                "WHERE f.OID = " + ID;
+        
+        double totalPris = 0.0;
+                ArrayList<HashMap<String, String>> rs = idb.fetchRows(produktPrisSql);
+                for (Map<String, String> row : rs) {
+                double pris = Double.parseDouble(row.get("Pris"));
+                int antal = Integer.parseInt(row.get("antal"));
+                totalPris += pris * antal;
+        }
+
+        if (Express) {
+            totalPris *= 1.2;
+        }
+
+        JOptionPane.showMessageDialog(this, "Order tillagd!\nTotalpris: " + totalPris + " kr", "Succé", JOptionPane.INFORMATION_MESSAGE); 
                          
 
         // Lägger till raden i tabellen i GUI:t
@@ -446,8 +470,7 @@ public class SkapaOrder extends javax.swing.JFrame {
         tfDatum.setText("");
         tfKundID.setText(""); 
         ComboExpress.setSelectedIndex(0);        
-        
-        JOptionPane.showMessageDialog(this, "Order tillagd!", "Succé", JOptionPane.INFORMATION_MESSAGE);
+       
     } catch (InfException e) {
          JOptionPane.showMessageDialog(this, "Fel vid databasinsättning: " + e.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
         
