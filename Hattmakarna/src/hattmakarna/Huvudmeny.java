@@ -119,7 +119,12 @@ public class Huvudmeny extends javax.swing.JFrame {
             }
         });
 
-        jButton11.setText("jButton11");
+        jButton11.setText("Uppdatera hattar");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         btnUpStatusOrdrar.setText("Order Hantering");
         btnUpStatusOrdrar.addActionListener(new java.awt.event.ActionListener() {
@@ -299,6 +304,11 @@ public class Huvudmeny extends javax.swing.JFrame {
         // TODO add your handling code here:
         new FiltreraSpecialbeställningar(idb).setVisible(true);
     }//GEN-LAST:event_btnFiltreraSpecialbeställningarActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        new ÄndraPrisPåHattar(idb).setVisible(true);
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments
