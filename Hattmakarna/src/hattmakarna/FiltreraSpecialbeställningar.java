@@ -84,7 +84,7 @@ public class FiltreraSpecialbeställningar extends javax.swing.JFrame {
 
     private void btnVisaSpecialbeställningarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaSpecialbeställningarActionPerformed
     try{
-        String sql = "SELECT o.OID, o.Status, o.Datum, o.Express, " +
+        String sql = "SELECT o.OID, o.Status, o.Datum, CAST(o.Express AS CHAR) AS Express, " +
                      "k.KundID, k.Förnamn, k.Efternamn, k.Adress, k.Email, k.Telefonnummer, k.personnummer, " +
                      "p.Namn AS produkt " +
                      "FROM ordrar o " +
@@ -92,12 +92,12 @@ public class FiltreraSpecialbeställningar extends javax.swing.JFrame {
                      "JOIN försäljning f ON o.OID = f.OID " +
                      "JOIN produkt p ON f.ProduktID = p.ProduktID " +
                      "WHERE p.Specialbeställning = true " +
-                     "ORDER BY o.OID";
+                     "ORDER BY o.OID"; //sql fråga som hämtar specialbeställningar inkl express som text
         
-        ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
+        ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql); //hämtar resultat
         
         
-        DefaultTableModel model = new DefaultTableModel();
+        DefaultTableModel model = new DefaultTableModel(); //skapar ny tabellmodell 
         model.addColumn("KundID");
         model.addColumn("Förnamn");
         model.addColumn("Efternamn");
@@ -109,15 +109,24 @@ public class FiltreraSpecialbeställningar extends javax.swing.JFrame {
         model.addColumn("Status");
         model.addColumn("Datum");
         model.addColumn("Express");
-        model.addColumn("Produkt");
+        model.addColumn("Produkt"); //lägger till kolumner i modellen 
         
         for (HashMap<String, String> rad : resultat) {
             String express = rad.get("Express");
-            if (express == null) {
-                express = "0";
-            }
+if (express == null) {
+    express = "okänt";
+} else {
+    String val = express.trim();
+    if (val.equals("1") || val.equalsIgnoreCase("true")) {
+        express = "Ja";
+    } else if (val.equals("0") || val.equalsIgnoreCase("false")) {
+        express = "Nej";
+    } else {
+        express = "okänt";
+    } // går igenom resultatet och tolkar express värdet till "ja", "nej", eller "okänt" beroende på data innehåll
+}
             
-        System.out.println("Radvärde: " + rad);
+        System.out.println("Radvärde: " + rad); //debug utskrift 
            
         model.addRow(new Object[] {
             rad.get("KundID"),
@@ -132,10 +141,10 @@ public class FiltreraSpecialbeställningar extends javax.swing.JFrame {
             rad.get("Datum"),
             express,
             rad.get("Namn")
-            });
+            }); //lägger till nya rader i tabellen med data 
         }
         
-        jTable1.setModel(model);
+        jTable1.setModel(model); //sätter modellen till tabellen 
     
     }
     catch (InfException e) {
