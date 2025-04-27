@@ -183,7 +183,7 @@ public class SökaEfterKund extends javax.swing.JFrame {
     
     if (personnummer.isEmpty()){
         JOptionPane.showMessageDialog(this, "Fyll i ett Personnummer.");
-        return;
+        return; //visar felmeddelande
     }
     
     try {
@@ -191,7 +191,7 @@ public class SökaEfterKund extends javax.swing.JFrame {
         
     if (KundID == null){
         JOptionPane.showMessageDialog(this, "Ingen kund hittades med det personnummret.");
-        return;
+        return; //visar felmeddelande
     }
     // Hämta kundinfo
         HashMap<String, String> kundInfo = idb.fetchRow("SELECT KundID, Förnamn, Efternamn, Adress, Email, Telefonnummer, personnummer FROM Kund WHERE personnummer = '" + personnummer + "'");
@@ -226,7 +226,7 @@ public class SökaEfterKund extends javax.swing.JFrame {
     String oid = rad.get("OID");
     String status = rad.get("Status");
     String datum = rad.get("Datum");
-    String express = rad.get("Express");
+    String express = rad.get("Express"); //loopar igenom varje rad från order i listan som hämtats från databasen
     
     System.out.println("Express (rått): '" + express + "' (klass: " + (express != null ? express.getClass().getName() : "null") + ")"); //debug utskrift
     

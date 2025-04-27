@@ -27,18 +27,18 @@ public class BilderTillOrder extends javax.swing.JFrame {
     public BilderTillOrder(InfDB idb) {
         initComponents();
         this.idb = idb;
-        fyllComboBox();
+        fyllComboBox(); //fyller combobox med tillgängliga orderID
     }
     
     private void fyllComboBox(){
         try { 
-            jComboBox1.removeAllItems();
-            jComboBox1.addItem("Välj OrderID");
+            jComboBox1.removeAllItems(); //rensar combox innan data läggs in
+            jComboBox1.addItem("Välj OrderID"); 
             
             
             ArrayList<String> orderIDLista = idb.fetchColumn("SELECT OID FROM ordrar");
             for (String oid : orderIDLista) {
-                jComboBox1.addItem("OrderID " + oid);
+                jComboBox1.addItem("OrderID " + oid); //lägger till varje orderID som ett val comboboxen
             }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(this, "Fel vid hämtning av orderID: " + e.getMessage());
@@ -107,37 +107,56 @@ public class BilderTillOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVisaBilderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaBilderActionPerformed
-        String selectedItem = (String) jComboBox1.getSelectedItem();
+        String selectedItem = (String) jComboBox1.getSelectedItem(); //hämtar vald orderID från combobox
         
-        if (selectedItem == null || selectedItem.equals("Välj OrderID")) {
-            JOptionPane.showMessageDialog(this, "Välj en giltig order först.");
+        if (selectedItem == null || selectedItem.equals("Välj OrderID")) { //säkerställer att en riktig order har valts
+            JOptionPane.showMessageDialog(this, "Välj en giltig order först."); //felmeddelande visas om ingen order valts
             return;
         }
         
-        String orderID = selectedItem.replace("OrderID ",  "");
+        String orderID = selectedItem.replace("OrderID ",  ""); //tar bort texten "OrderID " för att få fram endast ID:t
         
         try {
             ArrayList<HashMap<String, String>> bilder = idb.fetchRows(
-            "SELECT p.bild FROM försäljning f " +
+            "SELECT p.bild, p.Namn FROM försäljning f " +
             "JOIN produkt p ON f.ProduktID = p.ProduktID " +
-            "WHERE f.OID = " + orderID);
+            "WHERE f.OID = " + orderID); //hämtar bilder och produktnamn kopplat till orderID
             
         if (bilder.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Inga bilder kopplade till denna order.");
+            JOptionPane.showMessageDialog(this, "Inga bilder kopplade till denna order."); //felmeddelande visas om det saknas bilder till order
             return;
         }
         
-       JFrame bildFönster = new JFrame("Bilder för Order " + orderID);
-       bildFönster.setSize(600, 400);
-       bildFönster.setLayout(new java.awt.FlowLayout());
+       JFrame bildFönster = new JFrame("Bilder för Order " + orderID); //skapar nytt fönster för bilder
+       bildFönster.setSize(600,300);
+       bildFönster.setLayout(new java.awt.FlowLayout()); 
        
        for (HashMap<String, String> rad : bilder) {
-           String bildVäg = rad.get("bild");
-           if (bildVäg != null && !bildVäg.isEmpty()) {
-               bildFönster.add(new JLabel(new ImageIcon(bildVäg)));
-           }
-           
-       }
+    String bildVäg = rad.get("bild");
+    String produktNamn = rad.get("Namn");
+
+    if (bildVäg != null && !bildVäg.isEmpty()) {
+        
+        ImageIcon ikon = new ImageIcon(bildVäg); //laddar bilden från filväg
+        Image bild = ikon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH); //skalar ner bilden tilll 200x200
+        ImageIcon skaladIkon = new ImageIcon(bild);
+
+        
+        JLabel bildLabel = new JLabel(skaladIkon); //skapar jlabel med bilden
+
+        
+        JLabel namnLabel = new JLabel(produktNamn, JLabel.CENTER); //skapar jlabel med produktnamn
+
+        
+        JPanel produktPanel = new JPanel(); //skapar panel för bild och namn
+        produktPanel.setLayout(new BorderLayout());
+        produktPanel.add(bildLabel, BorderLayout.CENTER);
+        produktPanel.add(namnLabel, BorderLayout.SOUTH);
+
+        
+        bildFönster.add(produktPanel); //lägger till produktpanelen i popup-fönstret
+    }
+}
        
        bildFönster.setVisible(true);
        }
