@@ -620,3 +620,4 @@ public class SkapaOrder extends javax.swing.JFrame {
     private javax.swing.JTextField tfStatus1;
     // End of variables declaration//GEN-END:variables
 }
+//Hej
