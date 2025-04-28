@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
-
+//hej
 /**
  *
  * @author seansiik
