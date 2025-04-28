@@ -247,12 +247,12 @@ public class Huvudmeny extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        new FörsäljningsStatistik(idb).setVisible(true);
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        new Kundinfo(idb).setVisible(true);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnSpecialBeställningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSpecialBeställningActionPerformed
@@ -267,7 +267,7 @@ public class Huvudmeny extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        new SkapaOrder(idb).setVisible(true);
+        
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
