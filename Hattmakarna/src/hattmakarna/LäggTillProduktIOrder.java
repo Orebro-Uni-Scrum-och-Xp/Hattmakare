@@ -8,7 +8,7 @@
 
 package hattmakarna;
 
-
+//1234
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.*;
@@ -27,24 +27,23 @@ import java.util.HashMap;
 public class LäggTillProduktIOrder extends javax.swing.JFrame {
 
     private InfDB idb;
-    
+    private DefaultTableModel modell; //modell för tabellen
     /**
      * Creates new form LäggTillProduktIOrder
      */
-    public LäggTillProduktIOrder() {
+    public LäggTillProduktIOrder(InfDB idb) {
         initComponents();
-        try {
-            idb = new InfDB("hattmakaren.fil");
-            fyllTabell();
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Kunde inte ansluta till databasen");
-        }
+        this.idb = idb;
+        fyllTabell();
     }
 
     
     private void fyllTabell(){
         try {
+            //hämtar alla produkter med sql fråga
             String sql = "SELECT p.Namn, p.Pris, l.Antal, p.ProduktID FROM Produkt p JOIN LagerfördaHattar l ON p.ProduktID = l.ProduktID";
+            
+            //hämtar alla rader från databasen
             ArrayList<HashMap<String, String>> produkter = idb.fetchRows(sql);
             
             DefaultTableModel modell = new DefaultTableModel();
@@ -53,13 +52,15 @@ public class LäggTillProduktIOrder extends javax.swing.JFrame {
             modell.addColumn("Antal i lager");
             modell.addColumn("ProduktID");
             
-            for (HashMap<String, String> prod : produkter) {
+            
+            //lägger till varje produkt i tabellen
+            for (HashMap<String, String> produkt : produkter) {
                 modell.addRow(new Object[] {
                 
-                prod.get("Namn"),
-                prod.get("Pris"),
-                prod.get("Antal"),
-                prod.get("ProduktID")
+                produkt.get("Namn"),
+                produkt.get("Pris"),
+                produkt.get("Antal"),
+                produkt.get("ProduktID")
             });
            
         }
@@ -93,24 +94,24 @@ public class LäggTillProduktIOrder extends javax.swing.JFrame {
 
         tblProdukter.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-
+                "Namn", "Pris", "Antal i lager ", "ProduktID"
             }
         ));
         jScrollPane1.setViewportView(tblProdukter);
@@ -177,16 +178,17 @@ public class LäggTillProduktIOrder extends javax.swing.JFrame {
     private void btnLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillActionPerformed
         
         try {
-            int rad = tblProdukter.getSelectedRow();
+            int rad = tblProdukter.getSelectedRow(); //hämtar vald rad
             if (rad == -1) {
                 JOptionPane.showMessageDialog(null, "Välj en produkt i listan");
                 return;
                 
             }
             
+            // hämtar data från tabellen
             String produktID = tblProdukter.getValueAt(rad, 3).toString();
-            String orderID = tfOrderID.getText().trim();
-            String antalStr = tfAntal.getText().trim();
+            String orderID = tfOrderID.getText().trim(); //hämtar order från textfält
+            String antalStr = tfAntal.getText().trim(); //hämtar antal från textfält
             
             if (orderID.isEmpty() || antalStr.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Fyll i både OrderID och Antal");
@@ -202,7 +204,7 @@ public class LäggTillProduktIOrder extends javax.swing.JFrame {
             
             if (resultat != null) {
                 
-                //produkten finns uppdatera antalet
+                //produkten finns -> uppdatera antalet
                 String nyAntalsSQL = "UPDATE Försäljning SET Antal = Antal + " + antal + "WHERE OID=" + orderID + " AND ProduktID=" + produktID;
                 idb.update(nyAntalsSQL);
                 } else { 
