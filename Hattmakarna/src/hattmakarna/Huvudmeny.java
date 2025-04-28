@@ -12,12 +12,14 @@ import oru.inf.InfException;
 public class Huvudmeny extends javax.swing.JFrame {
 
     private static InfDB idb;
+    private String pid;
     /**
      * Creates new form Huvudmeny
      */
-    public Huvudmeny(InfDB idb) {
+    public Huvudmeny(InfDB idb, String pid) {
         initComponents();
         this.idb = idb;
+        this.pid = pid;
     }
 
     /**
@@ -44,9 +46,10 @@ public class Huvudmeny extends javax.swing.JFrame {
         btnUpStatusOrdrar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btnSökEfterKund = new javax.swing.JButton();
-        btnTaBortKund = new javax.swing.JButton();
+        btnVäljOrder = new javax.swing.JButton();
         btnFiltreraSpecialbeställningar = new javax.swing.JButton();
         btnVisaBilder = new javax.swing.JButton();
+        btnTaBortKund1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,10 +146,10 @@ public class Huvudmeny extends javax.swing.JFrame {
             }
         });
 
-        btnTaBortKund.setText("Ta bort kund");
-        btnTaBortKund.addActionListener(new java.awt.event.ActionListener() {
+        btnVäljOrder.setText("Välj order att jobba med");
+        btnVäljOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTaBortKundActionPerformed(evt);
+                btnVäljOrderActionPerformed(evt);
             }
         });
 
@@ -161,6 +164,13 @@ public class Huvudmeny extends javax.swing.JFrame {
         btnVisaBilder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVisaBilderActionPerformed(evt);
+            }
+        });
+
+        btnTaBortKund1.setText("Ta bort kund");
+        btnTaBortKund1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaBortKund1ActionPerformed(evt);
             }
         });
 
@@ -191,8 +201,9 @@ public class Huvudmeny extends javax.swing.JFrame {
                             .addComponent(btnUpStatusOrdrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(57, 57, 57)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnTaBortKund, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSökEfterKund, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+                            .addComponent(btnVäljOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSökEfterKund, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnTaBortKund1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -223,17 +234,18 @@ public class Huvudmeny extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnVisaBilder, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnTaBortKund, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnVisaBilder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnTaBortKund1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnMaterialBeställning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnMaterialLista, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                            .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnVäljOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnSpecialBeställning, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
@@ -300,10 +312,10 @@ public class Huvudmeny extends javax.swing.JFrame {
         new UppdateraStatusBeställning(idb).setVisible(true);
     }//GEN-LAST:event_btnUpStatusOrdrarActionPerformed
 
-    private void btnTaBortKundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortKundActionPerformed
+    private void btnVäljOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVäljOrderActionPerformed
         // TODO add your handling code here:
-        new TaBortKund(idb).setVisible(true);
-    }//GEN-LAST:event_btnTaBortKundActionPerformed
+        new TilldelaOrder(idb, pid).setVisible(true);
+    }//GEN-LAST:event_btnVäljOrderActionPerformed
 
     private void btnSökEfterKundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSökEfterKundActionPerformed
         // TODO add your handling code here:
@@ -324,6 +336,11 @@ public class Huvudmeny extends javax.swing.JFrame {
         // TODO add your handling code here:
         new BilderTillOrder(idb).setVisible(true);
     }//GEN-LAST:event_btnVisaBilderActionPerformed
+
+    private void btnTaBortKund1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortKund1ActionPerformed
+        // TODO add your handling code here:
+        new TaBortKund(idb).setVisible(true);
+    }//GEN-LAST:event_btnTaBortKund1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -366,9 +383,10 @@ public class Huvudmeny extends javax.swing.JFrame {
     private javax.swing.JButton btnMaterialLista;
     private javax.swing.JButton btnSpecialBeställning;
     private javax.swing.JButton btnSökEfterKund;
-    private javax.swing.JButton btnTaBortKund;
+    private javax.swing.JButton btnTaBortKund1;
     private javax.swing.JButton btnUpStatusOrdrar;
     private javax.swing.JButton btnVisaBilder;
+    private javax.swing.JButton btnVäljOrder;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
