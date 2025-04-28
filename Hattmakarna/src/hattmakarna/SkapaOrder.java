@@ -4,6 +4,8 @@
  */
 package hattmakarna;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import oru.inf.InfDB;
@@ -434,6 +436,32 @@ public class SkapaOrder extends javax.swing.JFrame {
                      "VALUES ('" + ID + "', '" + Status + "', '" + Datum + "', " + Express + ",'" + KundID + "')";
 
         idb.insert(sql);
+        
+         // Om express = Ja
+   
+        if (Express) {
+            String sqlPris = 
+                "UPDATE produkt p " +
+                "JOIN försäljning f ON p.ProduktID = f.ProduktID " +
+                "SET p.pris = p.pris * 1.2 " +
+                "WHERE f.OID = '" + ID + "'";
+            idb.update(sqlPris); 
+            
+            
+            String sqlHämta = 
+                 "SELECT p.namn, p.pris " +
+                 "FROM produkt p " +
+                 "JOIN försäljning f ON p.ProduktID = f.ProduktID " +
+                 "WHERE f.OID = '" + ID + "'";
+            ArrayList<HashMap<String, String>> produkter = idb.fetchRows(sqlHämta);
+
+            String meddelande = "Expresspåslag tillämpat!\nNya priser:\n";
+            for (HashMap<String, String> produkt : produkter) {
+            meddelande += produkt.get("namn") + ": " + produkt.get("pris") + " kr\n";
+}
+
+            JOptionPane.showMessageDialog(this, meddelande, "Priser uppdaterade", JOptionPane.INFORMATION_MESSAGE);
+        }
                          
 
         // Lägger till raden i tabellen i GUI:t
