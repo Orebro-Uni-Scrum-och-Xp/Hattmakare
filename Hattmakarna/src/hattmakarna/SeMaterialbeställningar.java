@@ -58,10 +58,7 @@ public class SeMaterialbeställningar extends javax.swing.JFrame {
             
             }catch(Exception e) {   
             System.out.println("Ett fel inträffade vid hämtning av data från databasen: " + e.getMessage());
-                                  }    
-                
-                
-                
+                                  }              
                 
 
     }
@@ -335,7 +332,7 @@ public class SeMaterialbeställningar extends javax.swing.JFrame {
              
                                         });
                 } 
-                
+                 
                 
             }else {
             JOptionPane.showMessageDialog(null, "Inga besällningar finns inom detta datumspann ");
@@ -349,15 +346,41 @@ public class SeMaterialbeställningar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // Knapp för att ändra status
+        // Knapp för att ändra status                                     
+      try {
+        int rad = jTable1.getSelectedRow();
+        if (rad == -1) {
+            JOptionPane.showMessageDialog(null, "Välj en beställning i tabellen först.");
+            return;
+        }
         
+        // Hämta Beställnings-ID från tabellen (från kolumn 0)
+        String bestallningsID = jTable1.getValueAt(rad, 0).toString();
         
+        // Låt användaren skriva in ny status
+        String nyStatus = JOptionPane.showInputDialog("Ange ny status för beställningen:");
         
+        if (nyStatus != null && !nyStatus.trim().isEmpty()) {
+            // Uppdatera databasen
+            String sql = "UPDATE beställning SET status = '" + nyStatus + "' WHERE BeställningsID = " + bestallningsID;
+            idb.update(sql);
+            
+            // Uppdatera tabellen direkt utan att behöva ladda om hela sidan
+            jTable1.setValueAt(nyStatus, rad, 3); // kolumn 3 är Status
+            JOptionPane.showMessageDialog(null, "Statusen har uppdaterats!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingen status angiven.");
+        }
+        
+    } catch (InfException e) {
+        JOptionPane.showMessageDialog(null, "Databasfel när status skulle ändras!");
+        System.out.println("Internt felmeddelande: " + e.getMessage());
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Ett fel inträffade!");
+        System.out.println("Internt felmeddelande: " + e.getMessage());
+    }     
         
     }//GEN-LAST:event_jButton2ActionPerformed
-        
-       
-    
 
   
     
