@@ -10,6 +10,7 @@ import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+//hej
 /**
  * @author seansiik
  */
