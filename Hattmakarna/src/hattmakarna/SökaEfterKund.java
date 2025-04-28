@@ -179,11 +179,11 @@ public class SökaEfterKund extends javax.swing.JFrame {
     }//GEN-LAST:event_tfPnrActionPerformed
 
     private void btnSökEfterKundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSökEfterKundActionPerformed
-    String personnummer = tfPnr.getText();
+    String personnummer = tfPnr.getText(); //hämtar personnummer från tf
     
     if (personnummer.isEmpty()){
         JOptionPane.showMessageDialog(this, "Fyll i ett Personnummer.");
-        return;
+        return; //visar felmeddelande
     }
     
     try {
@@ -191,7 +191,7 @@ public class SökaEfterKund extends javax.swing.JFrame {
         
     if (KundID == null){
         JOptionPane.showMessageDialog(this, "Ingen kund hittades med det personnummret.");
-        return;
+        return; //visar felmeddelande
     }
     // Hämta kundinfo
         HashMap<String, String> kundInfo = idb.fetchRow("SELECT KundID, Förnamn, Efternamn, Adress, Email, Telefonnummer, personnummer FROM Kund WHERE personnummer = '" + personnummer + "'");
@@ -201,12 +201,12 @@ public class SökaEfterKund extends javax.swing.JFrame {
         String adress = kundInfo.get("Adress");
         String email = kundInfo.get("Email");
         String telefonnummer = kundInfo.get("Telefonnummer");
-        String personnummerStr = kundInfo.get("personnummer");
+        String personnummerStr = kundInfo.get("personnummer"); //sparar kundinfo i lokala variabler 
         
 
-        // Hämta ordrar
-        ArrayList<HashMap<String, String>> orderLista = idb.fetchRows("SELECT OID, Status, Datum, Express FROM Ordrar WHERE KundID = " + KundID);
-
+        // Hämta ordrar som tillhör kunden
+        
+        ArrayList<HashMap<String, String>> orderLista = idb.fetchRows("SELECT OID, Status, Datum, CAST(Express AS CHAR) AS Express FROM Ordrar WHERE KundID = " + KundID);
         // Skapa tabellmodell
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("KundID");
@@ -220,24 +220,34 @@ public class SökaEfterKund extends javax.swing.JFrame {
         model.addColumn("Status");
         model.addColumn("Datum");
         model.addColumn("Express");
-
-        // Lägg till varje orderrad
+       // Lägg till varje orderrad
         
-      for (HashMap<String, String> rad : orderLista) {
+      for (HashMap<String, String> rad : orderLista) { 
     String oid = rad.get("OID");
     String status = rad.get("Status");
     String datum = rad.get("Datum");
-    String express = rad.get("Express");
-
-    if (express == null) {
-        express = "1";
+    String express = rad.get("Express"); //loopar igenom varje rad från order i listan som hämtats från databasen
+    
+    System.out.println("Express (rått): '" + express + "' (klass: " + (express != null ? express.getClass().getName() : "null") + ")"); //debug utskrift
+    
+   if (express == null) {
+    express = "okänt"; //om värdet saknas
+} else {
+    String val = express.trim();
+    if (val.equals("1") || val.equalsIgnoreCase("true") || val.equals("1.0")) {
+        express = "Ja"; //onmvandlar till ja
+    } else if (val.equals("0") || val.equalsIgnoreCase("false") || val.equals("0.0")) {
+        express = "Nej"; //omvandlar till nej 
+    } else {
+        express = "okänt"; 
     }
+}
 
     model.addRow(new Object[]{
         kundID, fornamn, efternamn, adress,
         email, telefonnummer, personnummerStr,
         oid, status, datum, express
-    });
+    }); //lägger till en rad i tabellen för varje order
 }
 
 // 💥 Viktigt: koppla modellen till tabellen

@@ -11,12 +11,14 @@ import oru.inf.InfException;
  */
 public class AdminMeny extends javax.swing.JFrame {
 private InfDB idb;
+private String pid;
     /**
      * Creates new form AdminMeny
      */
-    public AdminMeny(InfDB idb) {
+    public AdminMeny(InfDB idb, String pid) {
         initComponents();
         this.idb = idb;
+        this.pid = pid;
     }
 
     /**
@@ -82,7 +84,7 @@ private InfDB idb;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
             // TODO add your handling code here:
-            new Huvudmeny(idb).setVisible(true);
+            new Huvudmeny(idb, pid).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

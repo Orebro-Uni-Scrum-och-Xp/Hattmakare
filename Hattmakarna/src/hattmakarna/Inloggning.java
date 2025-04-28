@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package hattmakarna;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -92,12 +93,19 @@ private InfDB idb;
     private void BtnloggainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnloggainActionPerformed
    String email = tfemail.getText();
    String lösenord = tflosenord.getText();
+   String sqlpid = "SELECT PID from personal WHERE Email = '" + email + "'";
    String sqlemail = "SELECT Email FROM personal WHERE Email = '" + email + "'";
    String sqllosen = "SELECT Lösenord FROM personal WHERE Email = '" + email + "'";
    String sqlbehörighet = "SELECT Behörighetsnivå FROM personal WHERE Email = '" + email + "'";
    String dbemail = null;
    String dblosen = null;
     int dbbehörighet;  
+    String dbpid = null;
+    try{
+        dbpid = idb.fetchSingle(sqlpid);
+    } catch (InfException e){
+        JOptionPane.showMessageDialog(this, e);
+    }
 
 try {
     dbemail = idb.fetchSingle(sqlemail);
@@ -124,9 +132,9 @@ try {
 
 if (lösenord.equals(dblosen)) {
     if (dbbehörighet == 2) { 
-        new AdminMeny(idb).setVisible(true);
+        new AdminMeny(idb, dbpid).setVisible(true);
     } else {
-        new Huvudmeny(idb).setVisible(true);
+        new GuiHuvudmeny(idb).setVisible(true);
     }
 } else {
     lblfelmeddelande.setText("Fel lösenord, försök igen.");

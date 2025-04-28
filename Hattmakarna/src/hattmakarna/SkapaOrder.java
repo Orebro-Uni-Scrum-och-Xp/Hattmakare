@@ -429,6 +429,8 @@ public class SkapaOrder extends javax.swing.JFrame {
         return;
 }   
         
+        
+        
         // Skapar SQL-frågan för att lägga till en order
         try { 
         
@@ -437,31 +439,6 @@ public class SkapaOrder extends javax.swing.JFrame {
 
         idb.insert(sql);
         
-         // Om express = Ja
-   
-        if (Express) {
-            String sqlPris = 
-                "UPDATE produkt p " +
-                "JOIN försäljning f ON p.ProduktID = f.ProduktID " +
-                "SET p.pris = p.pris * 1.2 " +
-                "WHERE f.OID = '" + ID + "'";
-            idb.update(sqlPris); 
-            
-            
-            String sqlHämta = 
-                 "SELECT p.namn, p.pris " +
-                 "FROM produkt p " +
-                 "JOIN försäljning f ON p.ProduktID = f.ProduktID " +
-                 "WHERE f.OID = '" + ID + "'";
-            ArrayList<HashMap<String, String>> produkter = idb.fetchRows(sqlHämta);
-
-            String meddelande = "Expresspåslag tillämpat!\nNya priser:\n";
-            for (HashMap<String, String> produkt : produkter) {
-            meddelande += produkt.get("namn") + ": " + produkt.get("pris") + " kr\n";
-}
-
-            JOptionPane.showMessageDialog(this, meddelande, "Priser uppdaterade", JOptionPane.INFORMATION_MESSAGE);
-        }
                          
 
         // Lägger till raden i tabellen i GUI:t
@@ -474,8 +451,7 @@ public class SkapaOrder extends javax.swing.JFrame {
         tfDatum.setText("");
         tfKundID.setText(""); 
         ComboExpress.setSelectedIndex(0);        
-        
-        JOptionPane.showMessageDialog(this, "Order tillagd!", "Succé", JOptionPane.INFORMATION_MESSAGE);
+       
     } catch (InfException e) {
          JOptionPane.showMessageDialog(this, "Fel vid databasinsättning: " + e.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
         
