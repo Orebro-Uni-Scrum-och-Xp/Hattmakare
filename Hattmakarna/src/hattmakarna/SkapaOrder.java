@@ -4,8 +4,6 @@
  */
 package hattmakarna;
 
-import java.util.List;
-import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
@@ -441,23 +439,6 @@ public class SkapaOrder extends javax.swing.JFrame {
 
         idb.insert(sql);
         
-        String produktPrisSql = "SELECT p.Pris, f.antal FROM produkt " +
-                                "JOIN försäljning f on p.ProduktID = f.ProduktID " +
-                                "WHERE f.OID = " + ID;
-        
-        double totalPris = 0.0;
-                ArrayList<HashMap<String, String>> rs = idb.fetchRows(produktPrisSql);
-                for (Map<String, String> row : rs) {
-                double pris = Double.parseDouble(row.get("Pris"));
-                int antal = Integer.parseInt(row.get("antal"));
-                totalPris += pris * antal;
-        }
-
-        if (Express) {
-            totalPris *= 1.2;
-        }
-
-        JOptionPane.showMessageDialog(this, "Order tillagd!\nTotalpris: " + totalPris + " kr", "Succé", JOptionPane.INFORMATION_MESSAGE); 
                          
 
         // Lägger till raden i tabellen i GUI:t
@@ -535,7 +516,7 @@ public class SkapaOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnAndra1ActionPerformed
 
     private void BtnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTillbakaActionPerformed
-        new Huvudmeny(idb).setVisible(true);
+        new Huvudmeny(idb,"").setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnTillbakaActionPerformed
 

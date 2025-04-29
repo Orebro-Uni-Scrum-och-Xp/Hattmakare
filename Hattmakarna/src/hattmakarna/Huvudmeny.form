@@ -49,8 +49,9 @@
                       </Group>
                       <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnTaBortKund" max="32767" attributes="0"/>
-                          <Component id="btnSökEfterKund" pref="125" max="32767" attributes="0"/>
+                          <Component id="btnVäljOrder" max="32767" attributes="0"/>
+                          <Component id="btnSökEfterKund" max="32767" attributes="0"/>
+                          <Component id="btnTaBortKund1" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -91,17 +92,20 @@
                   <Component id="jLabel1" alignment="1" min="-2" pref="145" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="btnVisaBilder" pref="50" max="32767" attributes="0"/>
-                          <Component id="jButton10" alignment="0" pref="50" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btnVisaBilder" alignment="3" max="32767" attributes="0"/>
+                              <Component id="btnTaBortKund1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jButton10" alignment="0" max="32767" attributes="0"/>
                           <Component id="jButton2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnTaBortKund" alignment="0" max="32767" attributes="0"/>
                           <Component id="jButton6" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnMaterialBeställning" max="32767" attributes="0"/>
                           <Component id="btnMaterialLista" pref="51" max="32767" attributes="0"/>
-                          <Component id="jButton11" max="32767" attributes="0"/>
+                          <Component id="jButton11" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnVäljOrder" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -228,12 +232,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnS&#xf6;kEfterKundActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnTaBortKund">
+    <Component class="javax.swing.JButton" name="btnV&#xe4;ljOrder">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ta bort kund"/>
+        <Property name="text" type="java.lang.String" value="V&#xe4;lj order att jobba med"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTaBortKundActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnV&#xe4;ljOrderActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnFiltreraSpecialbest&#xe4;llningar">
@@ -250,6 +254,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisaBilderActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnTaBortKund1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ta bort kund"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTaBortKund1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

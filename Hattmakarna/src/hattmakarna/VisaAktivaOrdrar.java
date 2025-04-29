@@ -21,10 +21,12 @@ import javax.swing.JOptionPane;
 
 public class VisaAktivaOrdrar extends javax.swing.JFrame {
 
+
     private InfDB idb;//databas anslutning
     private DefaultTableModel modell;
     
     
+
 
 
     /**
@@ -33,17 +35,26 @@ public class VisaAktivaOrdrar extends javax.swing.JFrame {
     public VisaAktivaOrdrar(InfDB idb) {
         initComponents();
         this.idb = idb;
+
         
         fyllTabell();
         
+
+        try {
+            idb = new InfDB("hattmakaren.fil");
+            fyllTabell();
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Kunde inte ansluta till databasen");
+        
+            
+        }
         
     }
     
     
     private void fyllTabell() {
         try {
-            
-            //Sql fråga som hämtar aktiva ordrar och kundens namn 
+
             String sql = "SELECT o.OrderID, k.Namn, AS Kundnamn, o.Datum, o.Status " + "FROM `Order` o JOIN Kund k ON o.KundID = k.KundID" + "WHERE o.Status = 'Aktiv'";
             
             ArrayList<HashMap<String, String>> ordrar = idb.fetchRows(sql);
@@ -54,8 +65,6 @@ public class VisaAktivaOrdrar extends javax.swing.JFrame {
             modell.addColumn("Datum");
             modell.addColumn("Status");
             
-            
-            //fyller modellen med data
             for (HashMap<String, String> order : ordrar) {
                 modell.addRow(new Object[] {
                     order.get("OrderID"),
