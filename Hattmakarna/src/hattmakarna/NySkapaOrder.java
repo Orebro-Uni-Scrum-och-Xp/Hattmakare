@@ -56,7 +56,7 @@ public class NySkapaOrder extends javax.swing.JFrame {
         jLabel1.setText("Skapa order");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("order-ID");
+        jLabel2.setText("Order-ID");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Status");
