@@ -80,7 +80,7 @@ public class ÄndraPrisPåHattar extends javax.swing.JFrame {
         tblHattar = new javax.swing.JTable();
         btnUppdatera = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Uppdatera hattar");
 
