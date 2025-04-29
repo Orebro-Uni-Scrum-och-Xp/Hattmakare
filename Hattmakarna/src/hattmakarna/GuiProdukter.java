@@ -33,7 +33,7 @@ private static InfDB idb;
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButton1.setText("Ta bort lagerförda hattar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
