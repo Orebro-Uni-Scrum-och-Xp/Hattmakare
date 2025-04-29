@@ -69,7 +69,6 @@ public class SkapaOrder extends javax.swing.JFrame {
         tfDatum = new javax.swing.JTextField();
         tfEmail = new javax.swing.JTextField();
         BtnLaggTill = new javax.swing.JButton();
-        BtnAndra = new javax.swing.JButton();
         ComboExpress = new javax.swing.JComboBox<>();
         lblExpress = new javax.swing.JLabel();
         BtnTillbaka = new javax.swing.JButton();
@@ -241,18 +240,27 @@ public class SkapaOrder extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ny Order", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 18))); // NOI18N
         jPanel2.setToolTipText("");
+        jPanel2.add(jLabel2);
 
         lblID.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         lblID.setText("ID");
+        jPanel2.add(lblID);
 
         lblStatus.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         lblStatus.setText("Status");
+        jPanel2.add(lblStatus);
 
         lblKundID.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         lblKundID.setText("Email");
+        jPanel2.add(lblKundID);
 
         lblDatum.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         lblDatum.setText("Datum");
+        jPanel2.add(lblDatum);
+        jPanel2.add(tfStatus);
+        jPanel2.add(tfID);
+        jPanel2.add(tfDatum);
+        jPanel2.add(tfEmail);
 
         BtnLaggTill.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         BtnLaggTill.setForeground(new java.awt.Color(0, 0, 153));
@@ -262,15 +270,7 @@ public class SkapaOrder extends javax.swing.JFrame {
                 BtnLaggTillActionPerformed(evt);
             }
         });
-
-        BtnAndra.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        BtnAndra.setForeground(new java.awt.Color(255, 0, 0));
-        BtnAndra.setText("Ändra");
-        BtnAndra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAndraActionPerformed(evt);
-            }
-        });
+        jPanel2.add(BtnLaggTill);
 
         ComboExpress.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         ComboExpress.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ja", "Nej" }));
@@ -279,76 +279,11 @@ public class SkapaOrder extends javax.swing.JFrame {
                 ComboExpressActionPerformed(evt);
             }
         });
+        jPanel2.add(ComboExpress);
 
         lblExpress.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         lblExpress.setText("Express");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(BtnAndra, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(BtnLaggTill)
-                        .addGap(6, 6, 6))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfDatum)
-                            .addComponent(tfEmail)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblExpress)
-                                    .addComponent(lblID)
-                                    .addComponent(lblStatus)
-                                    .addComponent(lblKundID)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(tfID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                                        .addComponent(tfStatus, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addComponent(lblDatum))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(ComboExpress, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(49, 49, 49))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblID)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblStatus)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblDatum)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(lblExpress)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ComboExpress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(lblKundID)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnAndra)
-                    .addComponent(BtnLaggTill))
-                .addGap(30, 30, 30))
-        );
+        jPanel2.add(lblExpress);
 
         BtnTillbaka.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         BtnTillbaka.setForeground(new java.awt.Color(0, 0, 153));
@@ -358,6 +293,7 @@ public class SkapaOrder extends javax.swing.JFrame {
                 BtnTillbakaActionPerformed(evt);
             }
         });
+        jPanel2.add(BtnTillbaka);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -367,8 +303,7 @@ public class SkapaOrder extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtnTillbaka)
-                        .addGap(204, 204, 204)
+                        .addGap(299, 299, 299)
                         .addComponent(jLabel1)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -381,10 +316,8 @@ public class SkapaOrder extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(BtnTillbaka))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
@@ -573,7 +506,6 @@ public class SkapaOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnAndra;
     private javax.swing.JButton BtnAndra1;
     private javax.swing.JButton BtnLaggTill;
     private javax.swing.JButton BtnLaggTill1;
