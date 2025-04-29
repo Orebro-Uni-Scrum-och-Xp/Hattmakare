@@ -84,7 +84,7 @@ private String oid;
         jLabel3 = new javax.swing.JLabel();
         lblPID = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnValjOrder.setText("Välj order");
         btnValjOrder.addMouseListener(new java.awt.event.MouseAdapter() {
