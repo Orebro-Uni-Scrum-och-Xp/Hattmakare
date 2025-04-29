@@ -73,7 +73,7 @@ private void fyllModellerDropdown() {
         comboModeller = new javax.swing.JComboBox<>();
         BtnTaBort = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblRubrik.setText("Ta bort lagerförd vara");
 

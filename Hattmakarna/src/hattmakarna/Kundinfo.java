@@ -46,7 +46,7 @@ private InfDB idb;
         tfdPersnum = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnOk.setText("Lägg till kund");
         btnOk.addMouseListener(new java.awt.event.MouseAdapter() {

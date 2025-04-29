@@ -262,7 +262,7 @@
     </Container>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -410,13 +410,23 @@
                       <Component id="tfKundID" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblExpress" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblID" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblStatus" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblKundID" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="tfID" alignment="0" pref="235" max="32767" attributes="0"/>
-                                  <Component id="tfStatus" alignment="0" max="32767" attributes="0"/>
+
+                              <Component id="tfDatum" alignment="0" max="32767" attributes="0"/>
+                              <Component id="tfEmail" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblExpress" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblID" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblStatus" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblKundID" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="tfID" alignment="0" pref="235" max="32767" attributes="0"/>
+                                          <Component id="tfStatus" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="lblDatum" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+
                               </Group>
                               <Component id="lblDatum" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -457,7 +467,7 @@
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Component id="lblKundID" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="tfKundID" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfEmail" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="BtnLaggTill" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -492,7 +502,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Kund ID"/>
+            <Property name="text" type="java.lang.String" value="Email"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDatum">
@@ -509,7 +519,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tfDatum">
         </Component>
-        <Component class="javax.swing.JTextField" name="tfKundID">
+        <Component class="javax.swing.JTextField" name="tfEmail">
         </Component>
         <Component class="javax.swing.JButton" name="BtnLaggTill">
           <Properties>
