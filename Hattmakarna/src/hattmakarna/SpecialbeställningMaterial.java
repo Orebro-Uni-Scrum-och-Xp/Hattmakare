@@ -161,7 +161,7 @@ public class SpecialbeställningMaterial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+new GuiHuvudmeny(idb).setVisible(true);         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tfMaterialNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMaterialNamnActionPerformed
