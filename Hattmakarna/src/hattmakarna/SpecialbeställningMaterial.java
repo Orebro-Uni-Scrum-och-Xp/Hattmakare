@@ -197,13 +197,12 @@ new GuiHuvudmeny(idb).setVisible(true);         // TODO add your handling code h
         }catch (InfException e){
             lblFelmeddelande.setText("Problem med att kontrollera databasen");
         }
-        
-        System.out.println(dbNamn); // debugg
+       
         
         if (dbNamn == null){  // Om null ska man lägga till en ny rad
             
-            String sqlInsertQuery = "INSERT INTO material (namn, mängd, pris, enhet)"
-                    + "values('" + materialNamn + "','" + mängd + "','" + pris + "','" + enhet + "')";
+            String sqlInsertQuery = "INSERT INTO material(namn, pris, enhet) "
+                    + "values('" + materialNamn + "','" + pris + "','" + enhet + "')";
             
             try{
                 idb.insert(sqlInsertQuery);
@@ -213,19 +212,10 @@ new GuiHuvudmeny(idb).setVisible(true);         // TODO add your handling code h
             }
             
         }
-        else{ // annars ska man uppdatera befintliga mängden
-            String sqlUpdateQuery = "UPDATE material SET mängd = mängd + '" + mängd + "' WHERE namn = '" + materialNamn + "'";
-            
-            try{
-                idb.update(sqlUpdateQuery);
-                lblFelmeddelande.setText("Tillagd! Du kan lägga till flera.");
-            } catch (InfException e){
-                lblFelmeddelande.setText("Problem med att uppdatera mängden i databasen.");
-            }
-        }
+        
         // uppdatera produkt_material tabellen
         
-        String getMatID = "SELECT materialid FROM material WHERE namn = '" + materialNamn + "'";
+        String getMatID = "SELECT MaterialID FROM material WHERE Namn = '" + materialNamn + "'";
         String MID = null;
         
         try{
@@ -235,7 +225,7 @@ new GuiHuvudmeny(idb).setVisible(true);         // TODO add your handling code h
             lblFelmeddelande.setText("Problem med att hämta materialID");
         }
         
-        String sqlInsertProdukt_Material = "INSERT INTO produkt_material VALUES('" + this.produktID + "','" + MID + "','" + mängd + "')";
+        String sqlInsertProdukt_Material = "INSERT INTO produkt_material(ProduktID, MaterialID, Kvantitet) VALUES('" + this.produktID + "','" + MID + "','" + mängd + "')";
         
         try{
             idb.insert(sqlInsertProdukt_Material);
