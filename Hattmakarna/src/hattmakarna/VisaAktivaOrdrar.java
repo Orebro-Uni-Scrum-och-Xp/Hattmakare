@@ -39,23 +39,15 @@ public class VisaAktivaOrdrar extends javax.swing.JFrame {
         
         fyllTabell();
         
-
-        try {
-            idb = new InfDB("hattmakaren.fil");
-            fyllTabell();
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Kunde inte ansluta till databasen");
-        
-            
-        }
-        
     }
     
     
     private void fyllTabell() {
         try {
 
-            String sql = "SELECT o.OrderID, k.Namn, AS Kundnamn, o.Datum, o.Status " + "FROM `Order` o JOIN Kund k ON o.KundID = k.KundID" + "WHERE o.Status = 'Aktiv'";
+            String sql = "SELECT o.OID AS OrderID, CONCAT(k.Förnamn, ' ', k.Efternamn) AS Kundnamn, o.Datum, o.Status " +
+             "FROM ordrar o JOIN kund k ON o.KundID = k.KundID " +
+             "WHERE o.Status != 'Ej påbörjad'";
             
             ArrayList<HashMap<String, String>> ordrar = idb.fetchRows(sql);
             
@@ -67,7 +59,7 @@ public class VisaAktivaOrdrar extends javax.swing.JFrame {
             
             for (HashMap<String, String> order : ordrar) {
                 modell.addRow(new Object[] {
-                    order.get("OrderID"),
+                    order.get("OID"),
                     order.get("Kundnamn"),
                     order.get("Datum"),
                     order.get("Status")
