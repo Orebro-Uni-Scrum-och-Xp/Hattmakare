@@ -70,7 +70,7 @@ public class NySkapaOrder extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Email");
 
-        ComboExpress.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JA", "NEJ" }));
+        ComboExpress.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ja", "Nej" }));
 
         tfID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +100,7 @@ public class NySkapaOrder extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Status", "Datum", "Express", "KundID"
+                "ID", "Status", "Datum", "Email", "Express"
             }
         ));
         jScrollPane1.setViewportView(TableOrder);
