@@ -115,7 +115,7 @@ public class SeMaterialbeställningar extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Beställnings-ID", "Datum", "Personal-ID", "Status"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
