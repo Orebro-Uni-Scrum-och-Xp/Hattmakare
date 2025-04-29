@@ -41,7 +41,8 @@ public class LäggTillProduktIOrder extends javax.swing.JFrame {
     private void fyllTabell(){
         try {
             //hämtar alla produkter med sql fråga
-            String sql = "SELECT p.Namn, p.Pris, l.Antal, p.ProduktID FROM Produkt p JOIN LagerfördaHattar l ON p.ProduktID = l.ProduktID";
+            String sql = "SELECT p.Namn AS Namn, p.Pris AS Pris, l.Antal AS Antal, p.ProduktID AS ProduktID " + 
+                         "FROM Produkt p JOIN LagerfördaHattar l ON p.ProduktID = l.ProduktID";
             
             //hämtar alla rader från databasen
             ArrayList<HashMap<String, String>> produkter = idb.fetchRows(sql);
@@ -58,7 +59,7 @@ public class LäggTillProduktIOrder extends javax.swing.JFrame {
                 modell.addRow(new Object[] {
                 
                 produkt.get("Namn"),
-                produkt.get("Pris"),
+                String.valueOf(produkt.get("pris")),
                 produkt.get("Antal"),
                 produkt.get("ProduktID")
             });
