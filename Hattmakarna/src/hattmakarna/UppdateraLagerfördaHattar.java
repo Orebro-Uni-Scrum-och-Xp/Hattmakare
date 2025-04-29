@@ -75,7 +75,7 @@ public class UppdateraLagerfördaHattar extends javax.swing.JFrame {
         tfNyttAntal = new javax.swing.JTextField();
         tfNyttPris = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         BtnUppdatera.setText("Uppdatera");
         BtnUppdatera.addActionListener(new java.awt.event.ActionListener() {
