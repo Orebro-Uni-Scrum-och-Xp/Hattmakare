@@ -175,7 +175,7 @@ public class SkrivUtFöljesedel extends javax.swing.JFrame {
        
         String ordernr = tfOrdernr.getText();
         
-        String getOrder = "SELECT OID, Datum, KundID  FROM ordrar";
+        String getOrder = "SELECT OID, Datum, KundID  FROM ordrar WHERE OID = '" + ordernr + "'";
         
         HashMap<String, String> orderLista = new HashMap<>();
         

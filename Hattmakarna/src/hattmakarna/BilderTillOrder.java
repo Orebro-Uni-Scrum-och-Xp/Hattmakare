@@ -131,6 +131,8 @@ public class BilderTillOrder extends javax.swing.JFrame {
        bildFönster.setSize(600,300);
        bildFönster.setLayout(new java.awt.FlowLayout()); 
        
+       bildFönster.getContentPane().removeAll();
+       
        for (HashMap<String, String> rad : bilder) {
     String bildVäg = rad.get("bild");
     String produktNamn = rad.get("Namn");
@@ -159,6 +161,8 @@ public class BilderTillOrder extends javax.swing.JFrame {
 }
        
        bildFönster.setVisible(true);
+       bildFönster.revalidate();
+       bildFönster.repaint();
        }
         
        catch (InfException e) {

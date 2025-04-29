@@ -145,6 +145,14 @@ public class ÄndraPrisPåHattar extends javax.swing.JFrame {
         String beskrivning = (String) tblHattar.getValueAt(row, 6);
         String pid = (String) tblHattar.getValueAt(row, 0);
         
+        // Efter att du läst in värden från tabellen
+if (namn == null) namn = "";
+if (pris == null) pris = "";
+if (specialbest == null) specialbest = "";
+if (flaggad == null) flaggad = "";
+if (bild == null) bild = "";
+if (beskrivning == null) beskrivning = "";
+
 
         
         
