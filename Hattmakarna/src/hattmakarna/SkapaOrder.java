@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
-//hej
+
 /**
  *
  * @author seansiik
@@ -516,7 +516,7 @@ public class SkapaOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnAndra1ActionPerformed
 
     private void BtnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTillbakaActionPerformed
-        new Huvudmeny(idb).setVisible(true);
+        new Huvudmeny(idb,"").setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnTillbakaActionPerformed
 
@@ -596,4 +596,3 @@ public class SkapaOrder extends javax.swing.JFrame {
     private javax.swing.JTextField tfStatus1;
     // End of variables declaration//GEN-END:variables
 }
-//Hej

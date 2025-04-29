@@ -25,9 +25,9 @@ public class VisaAktivaOrdrar extends javax.swing.JFrame {
     /**
      * Creates new form VisaAktivaOrdrar
      */
-    public VisaAktivaOrdrar() {
+    public VisaAktivaOrdrar(InfDB idb) {
         initComponents();
-        
+        this.idb = idb;
         try {
             idb = new InfDB("hattmakaren.fil");
             fyllTabell();
@@ -194,7 +194,7 @@ public class VisaAktivaOrdrar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VisaAktivaOrdrar().setVisible(true);
+                //new VisaAktivaOrdrar().setVisible(true);
             }
         });
     }

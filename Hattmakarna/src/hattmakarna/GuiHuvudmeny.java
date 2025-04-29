@@ -67,7 +67,7 @@ public class GuiHuvudmeny extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Produkter");
+        jButton5.setText("Korrigera hattar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -134,7 +134,7 @@ public class GuiHuvudmeny extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    new SkapaFraktsedel(idb).setVisible(true);
+    new Fraktsedel(idb).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
