@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -68,7 +69,6 @@ public class SkapaOrder extends javax.swing.JFrame {
         tfDatum = new javax.swing.JTextField();
         tfKundID = new javax.swing.JTextField();
         BtnLaggTill = new javax.swing.JButton();
-        BtnAndra = new javax.swing.JButton();
         ComboExpress = new javax.swing.JComboBox<>();
         lblExpress = new javax.swing.JLabel();
         BtnTillbaka = new javax.swing.JButton();
@@ -262,15 +262,6 @@ public class SkapaOrder extends javax.swing.JFrame {
             }
         });
 
-        BtnAndra.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        BtnAndra.setForeground(new java.awt.Color(255, 0, 0));
-        BtnAndra.setText("Ändra");
-        BtnAndra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAndraActionPerformed(evt);
-            }
-        });
-
         ComboExpress.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         ComboExpress.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ja", "Nej" }));
         ComboExpress.addActionListener(new java.awt.event.ActionListener() {
@@ -282,35 +273,41 @@ public class SkapaOrder extends javax.swing.JFrame {
         lblExpress.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         lblExpress.setText("Express");
 
+        BtnTillbaka.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        BtnTillbaka.setForeground(new java.awt.Color(0, 0, 153));
+        BtnTillbaka.setText("Tillbaka");
+        BtnTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTillbakaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(BtnAndra, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(BtnTillbaka)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addComponent(BtnLaggTill)
                         .addGap(6, 6, 6))
+                    .addComponent(tfDatum)
+                    .addComponent(tfKundID)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfDatum)
-                            .addComponent(tfKundID)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblExpress)
-                                    .addComponent(lblID)
-                                    .addComponent(lblStatus)
-                                    .addComponent(lblKundID)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(tfID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                                        .addComponent(tfStatus, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addComponent(lblDatum))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(ComboExpress, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(lblExpress)
+                            .addComponent(lblID)
+                            .addComponent(lblStatus)
+                            .addComponent(lblKundID)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(tfID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                                .addComponent(tfStatus, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(lblDatum))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(ComboExpress, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(49, 49, 49))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(86, 86, 86)
@@ -344,19 +341,10 @@ public class SkapaOrder extends javax.swing.JFrame {
                 .addComponent(tfKundID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnAndra)
-                    .addComponent(BtnLaggTill))
+                    .addComponent(BtnLaggTill)
+                    .addComponent(BtnTillbaka))
                 .addGap(30, 30, 30))
         );
-
-        BtnTillbaka.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        BtnTillbaka.setForeground(new java.awt.Color(0, 0, 153));
-        BtnTillbaka.setText("Tillbaka");
-        BtnTillbaka.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnTillbakaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -366,8 +354,7 @@ public class SkapaOrder extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtnTillbaka)
-                        .addGap(204, 204, 204)
+                        .addGap(299, 299, 299)
                         .addComponent(jLabel1)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -380,10 +367,8 @@ public class SkapaOrder extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(BtnTillbaka))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
@@ -395,117 +380,79 @@ public class SkapaOrder extends javax.swing.JFrame {
 
     private void BtnLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLaggTillActionPerformed
 
-        //Hämtar data från textfälten
-        String ID = tfID.getText();
-        String Status = tfStatus.getText();
-        String Datum = tfDatum.getText();
-        String KundID= tfKundID.getText();
-        String expressStr = (String) ComboExpress.getSelectedItem();
-        boolean Express = expressStr.equals("Ja");        
-        
-        // Kontroll: alla fält måste vara ifyllda
-        if (ID.isEmpty() || Status.isEmpty() || Datum.isEmpty()|| KundID.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Fyll i alla fält!", "Fel", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        if (!validering.isNumerisk(ID)) {
+    // Hämta data från fälten
+    String ID = tfID.getText();
+    String Status = tfStatus.getText();
+    String Datum = tfDatum.getText();
+    String KundID = tfKundID.getText();
+    String expressStr = (String) ComboExpress.getSelectedItem();
+    boolean Express = expressStr.equalsIgnoreCase("Ja");
+
+    // Validering
+    if (ID.isEmpty() || Status.isEmpty() || Datum.isEmpty() || KundID.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Fyll i alla fält!", "Fel", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    if (!validering.isNumerisk(ID)) {
         JOptionPane.showMessageDialog(this, "ID måste vara numeriskt.", "Fel", JOptionPane.ERROR_MESSAGE);
         return;
-        }
-
-        if (!validering.isNotEmpty(Status)) {
+    }
+    if (!validering.isNotEmpty(Status)) {
         JOptionPane.showMessageDialog(this, "Status får inte vara tomt.", "Fel", JOptionPane.ERROR_MESSAGE);
         return;
-        }
-
-        if (!validering.isValidDatum(Datum)) {
+    }
+    if (!validering.isValidDatum(Datum)) {
         JOptionPane.showMessageDialog(this, "Datum måste vara i formatet ÅÅÅÅ-MM-DD.", "Fel", JOptionPane.ERROR_MESSAGE);
         return;
-}
-
-        if (!validering.isNumerisk(KundID)) {
+    }
+    if (!validering.isNumerisk(KundID)) {
         JOptionPane.showMessageDialog(this, "KundID måste vara numeriskt.", "Fel", JOptionPane.ERROR_MESSAGE);
         return;
-}   
-        
-        
-        
-        // Skapar SQL-frågan för att lägga till en order
-        try { 
-        
-        String sql = "INSERT INTO ordrar (OID, Status, Datum, express, KundID)" + 
-                     "VALUES ('" + ID + "', '" + Status + "', '" + Datum + "', " + Express + ",'" + KundID + "')";
+    }
 
+    try {
+        // 1. Lägg till order i databasen
+        String sql = "INSERT INTO ordrar (OID, Status, Datum, express, KundID) " +
+                     "VALUES ('" + ID + "', '" + Status + "', '" + Datum + "', " + Express + ", '" + KundID + "')";
         idb.insert(sql);
-        
-                         
 
-        // Lägger till raden i tabellen i GUI:t
-        DefaultTableModel tableModel = (DefaultTableModel) TableOrder.getModel();
-        tableModel.addRow(new Object[]{ID, Status, Datum, KundID, Express});
+        // 2. Hämta pris och antal från kopplade produkter i försäljning
+        String fetchSQL = "SELECT p.pris, f.antal " +
+                          "FROM försäljning f " +
+                          "JOIN produkt p ON f.ProduktID = p.ProduktID " +
+                          "WHERE f.OID = " + ID;
 
-         // Rensar textfälten efter insättning
+        ArrayList<HashMap<String, String>> produkter = idb.fetchRows(fetchSQL);
+
+        double totalPris = 0.0;
+        for (HashMap<String, String> produkt : produkter) {
+            double pris = Double.parseDouble(produkt.get("pris"));
+            int antal = Integer.parseInt(produkt.get("antal"));
+            totalPris += pris * antal;
+        }
+
+        if (Express) {
+            totalPris *= 1.2;  // Öka med 20 %
+        }
+
+        // 3. Visa ordern i tabellen
+        DefaultTableModel model = (DefaultTableModel) TableOrder.getModel();
+        model.addRow(new Object[]{ID, Status, Datum, KundID, Express});
+
+        // 4. Visa priset i dialog
+        JOptionPane.showMessageDialog(this, "Order skapad.\nTotalt pris: " + totalPris + " kr.", "Pris", JOptionPane.INFORMATION_MESSAGE);
+
+        // 5. Rensa fält
         tfID.setText("");
         tfStatus.setText("");
         tfDatum.setText("");
-        tfKundID.setText(""); 
-        ComboExpress.setSelectedIndex(0);        
-       
+        tfKundID.setText("");
+        ComboExpress.setSelectedIndex(0);
+
     } catch (InfException e) {
-         JOptionPane.showMessageDialog(this, "Fel vid databasinsättning: " + e.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
-        
-      }
-     
+        JOptionPane.showMessageDialog(this, "Fel vid databasinsättning: " + e.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_BtnLaggTillActionPerformed
-
-    private void BtnAndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAndraActionPerformed
-
-        //Hämtar vald rad i tabellen
-        int selectedRow = TableOrder.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel) TableOrder.getModel();
-
-        if (selectedRow != -1) { //Kontrollerar om en rad blivit vald
-
-            // Hämtar nya värden från textFälten, men behåller den gamla infon om fältet är tomt
-            String nyttID = tfID.getText().isEmpty() ? model.getValueAt(selectedRow, 0).toString() : tfID.getText();
-            String nyStatus = tfStatus.getText().isEmpty() ? model.getValueAt(selectedRow, 1).toString() : tfStatus.getText();
-            String nyttDatum = tfDatum.getText().isEmpty() ? model.getValueAt(selectedRow, 2).toString() : tfDatum.getText();
-            String nyttKundID = tfKundID.getText().isEmpty() ? model.getValueAt(selectedRow, 3).toString() : tfKundID.getText();
-            String nyExpressStr = (String) ComboExpress.getSelectedItem();
-            boolean nyExpress = nyExpressStr.equals("Ja");
-            
-            // Validering av fält om användaren har ändrat dem
-        if (!tfID.getText().isEmpty() && !validering.isNumerisk(nyttID)) {
-            JOptionPane.showMessageDialog(this, "ID måste vara numeriskt.", "Fel", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        if (!tfDatum.getText().isEmpty() && !validering.isValidDatum(nyttDatum)) {
-            JOptionPane.showMessageDialog(this, "Datum måste vara i formatet ÅÅÅÅ-MM-DD.", "Fel", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        if (!tfKundID.getText().isEmpty() && !validering.isNumerisk(nyttKundID)) {
-            JOptionPane.showMessageDialog(this, "KundID måste vara numeriskt.", "Fel", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-            // Uppdaterar tabellens modell med de nya värdena
-            model.setValueAt(nyttID, selectedRow, 0);
-            model.setValueAt(nyStatus, selectedRow, 1);
-            model.setValueAt(nyttDatum, selectedRow, 2);
-            model.setValueAt(nyttKundID, selectedRow, 3);
-            model.setValueAt(nyExpress, selectedRow, 4);
-      
-            // Bekräftelsemeddelande
-            JOptionPane.showMessageDialog(null, "Ordern har uppdaterats!", "Ändrat", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            // Om ingen rad är vald
-            JOptionPane.showMessageDialog(null, "Välj en order att ändra!", "Fel", JOptionPane.WARNING_MESSAGE);
-        }
-
-    }//GEN-LAST:event_BtnAndraActionPerformed
 
     private void BtnLaggTill1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLaggTill1ActionPerformed
 
@@ -516,7 +463,6 @@ public class SkapaOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnAndra1ActionPerformed
 
     private void BtnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTillbakaActionPerformed
-        new Huvudmeny(idb,"").setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnTillbakaActionPerformed
 
@@ -560,7 +506,6 @@ public class SkapaOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnAndra;
     private javax.swing.JButton BtnAndra1;
     private javax.swing.JButton BtnLaggTill;
     private javax.swing.JButton BtnLaggTill1;
