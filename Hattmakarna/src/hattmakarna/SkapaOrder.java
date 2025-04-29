@@ -429,11 +429,26 @@ public class SkapaOrder extends javax.swing.JFrame {
         return;
 }   
         
+
+        try {
         
+        String kontrollFraga = "SELECT * FROM kund WHERE KundID = '" + KundID + "'";
         
-        // Skapar SQL-frågan för att lägga till en order
-        try { 
+        HashMap<String, String> kund = null;
         
+        kund = idb.fetchRow(kontrollFraga);
+
+        if (kund == null) {
+         new GuiValFönster(idb).setVisible(true);
+        this.dispose();  
+       
+    }
+} catch (InfException e) {
+    JOptionPane.showMessageDialog(this, "Fel vid kontroll av kund: " + e.getMessage(), "fel", JOptionPane.ERROR_MESSAGE);
+    return;
+}
+        try{
+
         String sql = "INSERT INTO ordrar (OID, Status, Datum, express, KundID)" + 
                      "VALUES ('" + ID + "', '" + Status + "', '" + Datum + "', " + Express + ",'" + KundID + "')";
 
