@@ -21,27 +21,29 @@ import javax.swing.JOptionPane;
 
 public class VisaAktivaOrdrar extends javax.swing.JFrame {
 
-    private InfDB idb; //databas anslutning
+    private InfDB idb;//databas anslutning
+    private DefaultTableModel modell;
+    
+    
+
+
     /**
      * Creates new form VisaAktivaOrdrar
      */
-    public VisaAktivaOrdrar() {
+    public VisaAktivaOrdrar(InfDB idb) {
         initComponents();
+        this.idb = idb;
         
-        try {
-            idb = new InfDB("hattmakaren.fil");
-            fyllTabell();
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Kunde inte ansluta till databasen");
+        fyllTabell();
         
-            
-        }
         
     }
     
     
     private void fyllTabell() {
         try {
+            
+            //Sql fråga som hämtar aktiva ordrar och kundens namn 
             String sql = "SELECT o.OrderID, k.Namn, AS Kundnamn, o.Datum, o.Status " + "FROM `Order` o JOIN Kund k ON o.KundID = k.KundID" + "WHERE o.Status = 'Aktiv'";
             
             ArrayList<HashMap<String, String>> ordrar = idb.fetchRows(sql);
@@ -52,6 +54,8 @@ public class VisaAktivaOrdrar extends javax.swing.JFrame {
             modell.addColumn("Datum");
             modell.addColumn("Status");
             
+            
+            //fyller modellen med data
             for (HashMap<String, String> order : ordrar) {
                 modell.addRow(new Object[] {
                     order.get("OrderID"),
@@ -194,7 +198,7 @@ public class VisaAktivaOrdrar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VisaAktivaOrdrar().setVisible(true);
+                //new VisaAktivaOrdrar().setVisible(true);
             }
         });
     }
