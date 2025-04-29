@@ -206,7 +206,7 @@ public class LäggTillProduktIOrder extends javax.swing.JFrame {
             if (resultat != null) {
                 
                 //produkten finns -> uppdatera antalet
-                String nyAntalsSQL = "UPDATE Försäljning SET Antal = Antal + " + antal + "WHERE OID=" + orderID + " AND ProduktID=" + produktID;
+                String nyAntalsSQL = "UPDATE Försäljning SET Antal = Antal + " + antal + " WHERE OID=" + orderID + " AND ProduktID=" + produktID;
                 idb.update(nyAntalsSQL);
                 } else { 
                 //annars lägg till ny rad
@@ -216,7 +216,7 @@ public class LäggTillProduktIOrder extends javax.swing.JFrame {
             }
             
             //uppdatera lagret
-            String minskaLagerSQL = "UPDATE LagerfördaHattar SET Antal = Antal -" + antal + "WHERE ProduktID=" + produktID;
+            String minskaLagerSQL = "UPDATE LagerfördaHattar SET Antal = Antal -" + antal + " WHERE ProduktID=" + produktID;
             idb.update(minskaLagerSQL);
             
             JOptionPane.showMessageDialog(null, "Produkten lades till i ordern");
