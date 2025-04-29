@@ -66,7 +66,7 @@ public class SkapaOrder extends javax.swing.JFrame {
         tfStatus = new javax.swing.JTextField();
         tfID = new javax.swing.JTextField();
         tfDatum = new javax.swing.JTextField();
-        tfKundID = new javax.swing.JTextField();
+        tfEmail = new javax.swing.JTextField();
         BtnLaggTill = new javax.swing.JButton();
         BtnAndra = new javax.swing.JButton();
         ComboExpress = new javax.swing.JComboBox<>();
@@ -216,7 +216,7 @@ public class SkapaOrder extends javax.swing.JFrame {
                 .addGap(35, 35, 35))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Skapa Order");
@@ -248,7 +248,7 @@ public class SkapaOrder extends javax.swing.JFrame {
         lblStatus.setText("Status");
 
         lblKundID.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        lblKundID.setText("Kund ID");
+        lblKundID.setText("Email");
 
         lblDatum.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         lblDatum.setText("Datum");
@@ -298,7 +298,7 @@ public class SkapaOrder extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfDatum)
-                            .addComponent(tfKundID)
+                            .addComponent(tfEmail)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblExpress)
@@ -341,7 +341,7 @@ public class SkapaOrder extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(lblKundID)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfKundID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnAndra)
@@ -399,12 +399,12 @@ public class SkapaOrder extends javax.swing.JFrame {
         String ID = tfID.getText();
         String Status = tfStatus.getText();
         String Datum = tfDatum.getText();
-        String KundID= tfKundID.getText();
+        String Email= tfEmail.getText();
         String expressStr = (String) ComboExpress.getSelectedItem();
         boolean Express = expressStr.equals("Ja");        
         
         // Kontroll: alla fält måste vara ifyllda
-        if (ID.isEmpty() || Status.isEmpty() || Datum.isEmpty()|| KundID.isEmpty()) {
+        if (ID.isEmpty() || Status.isEmpty() || Datum.isEmpty()|| Email.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Fyll i alla fält!", "Fel", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -424,23 +424,20 @@ public class SkapaOrder extends javax.swing.JFrame {
         return;
 }
 
-        if (!validering.isNumerisk(KundID)) {
-        JOptionPane.showMessageDialog(this, "KundID måste vara numeriskt.", "Fel", JOptionPane.ERROR_MESSAGE);
-        return;
-}   
         
 
         try {
         
-        String kontrollFraga = "SELECT * FROM kund WHERE KundID = '" + KundID + "'";
+        String kontrollFraga = "SELECT * FROM kund WHERE Email = '" + Email + "'";
         
         HashMap<String, String> kund = null;
         
         kund = idb.fetchRow(kontrollFraga);
 
-        if (kund == null) {
+        if (kund == null || kund.isEmpty()) {
          new GuiValFönster(idb).setVisible(true);
-        this.dispose();  
+        this.dispose(); 
+        return;
        
     }
 } catch (InfException e) {
@@ -449,8 +446,8 @@ public class SkapaOrder extends javax.swing.JFrame {
 }
         try{
 
-        String sql = "INSERT INTO ordrar (OID, Status, Datum, express, KundID)" + 
-                     "VALUES ('" + ID + "', '" + Status + "', '" + Datum + "', " + Express + ",'" + KundID + "')";
+        String sql = "INSERT INTO ordrar (OID, Status, Datum, express, Email)" + 
+                     "VALUES ('" + ID + "', '" + Status + "', '" + Datum + "', " + Express + ",'" + Email + "')";
 
         idb.insert(sql);
         
@@ -458,13 +455,13 @@ public class SkapaOrder extends javax.swing.JFrame {
 
         // Lägger till raden i tabellen i GUI:t
         DefaultTableModel tableModel = (DefaultTableModel) TableOrder.getModel();
-        tableModel.addRow(new Object[]{ID, Status, Datum, KundID, Express});
+        tableModel.addRow(new Object[]{ID, Status, Datum, Email, Express});
 
          // Rensar textfälten efter insättning
         tfID.setText("");
         tfStatus.setText("");
         tfDatum.setText("");
-        tfKundID.setText(""); 
+        tfEmail.setText(""); 
         ComboExpress.setSelectedIndex(0);        
        
     } catch (InfException e) {
@@ -486,7 +483,7 @@ public class SkapaOrder extends javax.swing.JFrame {
             String nyttID = tfID.getText().isEmpty() ? model.getValueAt(selectedRow, 0).toString() : tfID.getText();
             String nyStatus = tfStatus.getText().isEmpty() ? model.getValueAt(selectedRow, 1).toString() : tfStatus.getText();
             String nyttDatum = tfDatum.getText().isEmpty() ? model.getValueAt(selectedRow, 2).toString() : tfDatum.getText();
-            String nyttKundID = tfKundID.getText().isEmpty() ? model.getValueAt(selectedRow, 3).toString() : tfKundID.getText();
+            String nyttKundID = tfEmail.getText().isEmpty() ? model.getValueAt(selectedRow, 3).toString() : tfEmail.getText();
             String nyExpressStr = (String) ComboExpress.getSelectedItem();
             boolean nyExpress = nyExpressStr.equals("Ja");
             
@@ -501,7 +498,7 @@ public class SkapaOrder extends javax.swing.JFrame {
             return;
         }
 
-        if (!tfKundID.getText().isEmpty() && !validering.isNumerisk(nyttKundID)) {
+        if (!tfEmail.getText().isEmpty() && !validering.isNumerisk(nyttKundID)) {
             JOptionPane.showMessageDialog(this, "KundID måste vara numeriskt.", "Fel", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -603,9 +600,9 @@ public class SkapaOrder extends javax.swing.JFrame {
     private javax.swing.JLabel lblStatus1;
     private javax.swing.JTextField tfDatum;
     private javax.swing.JTextField tfDatum1;
+    private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfID;
     private javax.swing.JTextField tfID1;
-    private javax.swing.JTextField tfKundID;
     private javax.swing.JTextField tfKundID1;
     private javax.swing.JTextField tfStatus;
     private javax.swing.JTextField tfStatus1;
