@@ -401,6 +401,7 @@ public class SkapaOrder extends javax.swing.JFrame {
         String Status = tfStatus.getText();
         String Datum = tfDatum.getText();
         String Email= tfEmail.getText();
+        
         String expressStr = (String) ComboExpress.getSelectedItem();
         boolean Express = expressStr.equals("Ja");        
         
@@ -425,11 +426,9 @@ public class SkapaOrder extends javax.swing.JFrame {
         return;
 }
 
-        
-
         try {
         
-        String kontrollFraga = "SELECT * FROM kund WHERE Email = '" + Email + "'";
+        String kontrollFraga = "SELECT KundID FROM kund WHERE Email = '" + Email + "'";
         
         HashMap<String, String> kund = null;
         
@@ -439,16 +438,11 @@ public class SkapaOrder extends javax.swing.JFrame {
          new GuiValFönster(idb).setVisible(true);
         this.dispose(); 
         return;
-       
-    }
-} catch (InfException e) {
-    JOptionPane.showMessageDialog(this, "Fel vid kontroll av kund: " + e.getMessage(), "fel", JOptionPane.ERROR_MESSAGE);
-    return;
-}
-        try{
-
-        String sql = "INSERT INTO ordrar (OID, Status, Datum, express, Email)" + 
-                     "VALUES ('" + ID + "', '" + Status + "', '" + Datum + "', " + Express + ",'" + Email + "')";
+          
+        }
+        String KundID= kund.get("KundID");
+        String sql = "INSERT INTO ordrar (OID, Status, Datum, express, KundID)" + 
+                     "VALUES ('" + ID + "', '" + Status + "', '" + Datum + "', " + Express + ",'" + KundID + "')";
 
         idb.insert(sql);
         
