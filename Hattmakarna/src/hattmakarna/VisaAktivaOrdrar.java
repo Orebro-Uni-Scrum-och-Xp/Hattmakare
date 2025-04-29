@@ -86,7 +86,7 @@ public class VisaAktivaOrdrar extends javax.swing.JFrame {
         tblOrdrar = new javax.swing.JTable();
         scrollPane1 = new java.awt.ScrollPane();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Visa aktiva ordrar");
 
