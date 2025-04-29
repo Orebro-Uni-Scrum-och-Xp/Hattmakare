@@ -4,9 +4,12 @@
  */
 package hattmakarna;
 
-import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.table.DefaultTableModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 
 /**
  *
@@ -21,8 +24,31 @@ public class ÄndraHattbeskrivning extends javax.swing.JFrame {
     public ÄndraHattbeskrivning(InfDB idb) {
         initComponents();
         this.idb = idb; 
+        loadData();
+        tableBeskrivning.setAutoCreateRowSorter(true);
     }
 
+    private void loadData() {
+    try {
+        String sql = "SELECT ProduktID, Beskrivning FROM produkt";
+        ArrayList<HashMap<String, String>> result = idb.fetchRows(sql);
+
+        DefaultTableModel model = (DefaultTableModel) tableBeskrivning.getModel();
+        model.setRowCount(0); // Rensa tabellen
+
+        for (HashMap<String, String> rad : result) {
+            model.addRow(new Object[]{
+                rad.get("ProduktID"),
+                rad.get("Beskrivning")
+            });
+        }
+
+    } catch (InfException e) {
+        lblFelMed.setText("Fel vid hämtning av hattdata: " + e.getMessage());
+    }
+    
+}
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,12 +58,13 @@ public class ÄndraHattbeskrivning extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tfID = new javax.swing.JTextField();
         BtnÄndra = new javax.swing.JButton();
-        lblHattID = new javax.swing.JLabel();
         lblNyBeskrivning = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         taBeskrivning = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableBeskrivning = new javax.swing.JTable();
+        lblFelMed = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,9 +77,6 @@ public class ÄndraHattbeskrivning extends javax.swing.JFrame {
             }
         });
 
-        lblHattID.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        lblHattID.setText("Hatt-ID");
-
         lblNyBeskrivning.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         lblNyBeskrivning.setText("Ny Beskrivning");
 
@@ -60,40 +84,62 @@ public class ÄndraHattbeskrivning extends javax.swing.JFrame {
         taBeskrivning.setRows(5);
         jScrollPane1.setViewportView(taBeskrivning);
 
+        tableBeskrivning.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "id", "Beskrivning"
+            }
+        ));
+        jScrollPane2.setViewportView(tableBeskrivning);
+        if (tableBeskrivning.getColumnModel().getColumnCount() > 0) {
+            tableBeskrivning.getColumnModel().getColumn(0).setMinWidth(0);
+            tableBeskrivning.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tableBeskrivning.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
+
+        lblFelMed.setText(" ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnÄndra))
+                        .addGap(40, 40, 40)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblFelMed, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblNyBeskrivning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblHattID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
-                            .addComponent(tfID))))
-                .addContainerGap(128, Short.MAX_VALUE))
+                        .addGap(173, 173, 173)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BtnÄndra)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblNyBeskrivning)
+                                .addGap(55, 55, 55)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(153, 153, 153)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblHattID))
-                .addGap(36, 36, 36)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNyBeskrivning)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(BtnÄndra)
-                .addContainerGap(144, Short.MAX_VALUE))
+                    .addComponent(lblFelMed)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNyBeskrivning, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(BtnÄndra)
+                        .addGap(33, 33, 33)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(90, 90, 90))
         );
 
         pack();
@@ -101,36 +147,28 @@ public class ÄndraHattbeskrivning extends javax.swing.JFrame {
 
     private void BtnÄndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnÄndraActionPerformed
 
-        String produktID = tfID.getText();
+    int row = tableBeskrivning.getSelectedRow();
+    if (row != -1) {
+        String produktID = tableBeskrivning.getValueAt(row, 0).toString();  // Kolumn 0 = ProduktID
         String nyBeskrivning = taBeskrivning.getText();
-        
-        if (!validering.isNumerisk(produktID)) {
-        JOptionPane.showMessageDialog(this, "ID måste vara numeriskt.", "Fel", JOptionPane.ERROR_MESSAGE);
-        return;
-        }
-        
-        if (produktID.isEmpty() || nyBeskrivning.isEmpty()) {
-            JOptionPane.showMessageDialog (null, "Fyll i både Hatt-ID och ny beskrivning.");
-            return;
-        }
-        
-        
-    try {
-        String kontrollSql = "SELECT * FROM produkt WHERE ProduktID = " + produktID;
-        if (idb.fetchRow(kontrollSql) == null) {
-            JOptionPane.showMessageDialog(null, "Ingen produkt med det ID:t hittades.");
-            return;
-        }
 
-            String sql = "UPDATE produkt SET Beskrivning = '" + nyBeskrivning +"' WHERE ProduktID = " + produktID;
-            idb.update(sql);
-            
-            tfID.setText("");
-            taBeskrivning.setText("");
+        if (nyBeskrivning != null && !nyBeskrivning.isEmpty()) {
+            try {
+                String sql = "UPDATE produkt SET Beskrivning = '" + nyBeskrivning + "' WHERE ProduktID = " + produktID;
+                idb.update(sql);
 
-            } catch (InfException ex) {
-           JOptionPane.showMessageDialog(null, "Fel vid uppdatering: " + ex.getMessage());
+                lblFelMed.setText("Beskrivning uppdaterad!");
+                taBeskrivning.setText("");
+                loadData(); // din metod för att uppdatera tabellen
+            } catch (InfException e) {
+                lblFelMed.setText("Fel vid uppdatering: " + e.getMessage());
             }
+        } else {
+            lblFelMed.setText("Beskrivning får inte vara tom.");
+        }
+    } else {
+        lblFelMed.setText("Välj en produkt att uppdatera.");
+    }
 
     }//GEN-LAST:event_BtnÄndraActionPerformed
 
@@ -172,9 +210,10 @@ public class ÄndraHattbeskrivning extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnÄndra;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblHattID;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblFelMed;
     private javax.swing.JLabel lblNyBeskrivning;
     private javax.swing.JTextArea taBeskrivning;
-    private javax.swing.JTextField tfID;
+    private javax.swing.JTable tableBeskrivning;
     // End of variables declaration//GEN-END:variables
 }
