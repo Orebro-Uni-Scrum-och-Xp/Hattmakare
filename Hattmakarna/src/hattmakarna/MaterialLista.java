@@ -90,7 +90,7 @@ public class MaterialLista extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Ordrar som saknar materialbeställning:  ");
 
