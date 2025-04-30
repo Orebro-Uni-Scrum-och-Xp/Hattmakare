@@ -139,8 +139,8 @@ public class Specialbeställning extends javax.swing.JFrame {
         int boolFlag = Integer.parseInt(flaggad);
         boolean do_continue = false;
         
-        String sqlLäggTillSpecial = "INSERT INTO produkt (namn, pris, specialbeställning, flaggad)"
-                + "values('" + produktNamn + "','" + pris + "','" + 1 + "','" + flaggad + "')";
+        String sqlLäggTillSpecial = "INSERT INTO produkt (namn, pris, specialbeställning, flaggad) " +
+               "VALUES ('" + produktNamn + "', " + pris + ", true, " + flaggad + ")";
         
 
         if (boolFlag != 1 && boolFlag != 0) {
@@ -161,11 +161,14 @@ public class Specialbeställning extends javax.swing.JFrame {
         if (do_continue){
             
             // Hämta produktid från produkten 
-            String sqlGetPID = "SELECT produktid FROM produkt WHERE namn = '" + produktNamn + "'";
+            String sqlGetPID = "SELECT MAX(ProduktID) FROM produkt";   
             String produktID = null;
             
             try{
                 produktID = idb.fetchSingle(sqlGetPID);
+                
+                System.out.println("ProduktID som skickas vidare: " + produktID);
+                
                 new SpecialbeställningMaterial(idb, produktID).setVisible(true);
             }catch (InfException e){
                 lblFelmeddelande.setText("Problem med att hämta produktID");
