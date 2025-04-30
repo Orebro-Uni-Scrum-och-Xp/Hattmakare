@@ -254,7 +254,7 @@ public class SkapaFraktsedel extends javax.swing.JFrame {
         }
         
         // Inserta in i databasen
-        
+        String exportkod = "EXP001";
         String insertQuery = "INSERT INTO frakt (avsändare, adress, vikt, beskrivning, mottagare, pris, oid)"
                 + "values( '" + avsändare + "','" + adress + "','" +
                 vikt + "','" + beskrivning + "','" + dbKundId + "','" + 
