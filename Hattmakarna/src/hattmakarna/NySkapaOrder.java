@@ -16,12 +16,14 @@ import oru.inf.InfException;
  */
 public class NySkapaOrder extends javax.swing.JFrame {
  private InfDB idb;
+ private String pid;
     /**
      * Creates new form NySkapaOrder
      */
-    public NySkapaOrder(InfDB idb) {
+    public NySkapaOrder(InfDB idb, String pid) {
         initComponents();
          this.idb = idb; 
+         this.pid = pid;
     }
 
     /**
@@ -201,7 +203,7 @@ public class NySkapaOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_tfIDActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-            new GuiHuvudmeny(idb).setVisible(true);
+            new GuiHuvudmeny(idb, pid).setVisible(true);
         this.dispose();    // TODO add your handling code here:
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
@@ -246,7 +248,7 @@ public class NySkapaOrder extends javax.swing.JFrame {
         kund = idb.fetchRow(kontrollFraga);
 
         if (kund == null || kund.isEmpty()) {
-         new GuiValFönster(idb).setVisible(true);
+         new GuiValFönster(idb, pid).setVisible(true);
         this.dispose(); 
         return;
           

@@ -20,13 +20,14 @@ public class SkapaOrder extends javax.swing.JFrame {
     
     
     private InfDB idb;
-
+    private String pid;
     /**
      * Creates new form SkapaOrder
      */
-    public SkapaOrder(InfDB idb) {
+    public SkapaOrder(InfDB idb, String pid) {
         initComponents();
         this.idb = idb;    
+        this.pid = pid;
 
     }
 
@@ -368,7 +369,7 @@ public class SkapaOrder extends javax.swing.JFrame {
         kund = idb.fetchRow(kontrollFraga);
 
         if (kund == null || kund.isEmpty()) {
-         new GuiValFönster(idb).setVisible(true);
+         new GuiValFönster(idb, pid).setVisible(true);
         this.dispose(); 
         return;
           
@@ -456,7 +457,7 @@ public class SkapaOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnAndra1ActionPerformed
 
     private void BtnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTillbakaActionPerformed
-        new GuiHuvudmeny(idb).setVisible(true);
+        new GuiHuvudmeny(idb, pid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnTillbakaActionPerformed
 

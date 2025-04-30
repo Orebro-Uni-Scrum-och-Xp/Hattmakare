@@ -15,9 +15,10 @@ public class GuiOrder extends javax.swing.JFrame {
     /**
      * Creates new form GuiOrder
      */
-    public GuiOrder(InfDB idb) {
+    public GuiOrder(InfDB idb, String pid) {
         initComponents();
         this.idb = idb;
+        this.pid = pid;
     }
 
     /**
@@ -130,7 +131,7 @@ public class GuiOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    new NySkapaOrder(idb).setVisible(true);
+    new NySkapaOrder(idb, pid).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

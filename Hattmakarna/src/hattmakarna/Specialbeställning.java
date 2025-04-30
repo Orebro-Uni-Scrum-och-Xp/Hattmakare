@@ -14,13 +14,15 @@ import oru.inf.InfException;
 public class Specialbeställning extends javax.swing.JFrame { 
     
     private static InfDB idb;
+    private String pid;
 
     /**
      * Creates new form Specialbeställning
      */
-    public Specialbeställning(InfDB idb) {
+    public Specialbeställning(InfDB idb, String pid) {
         initComponents();
         this.idb = idb;
+        this.pid = pid;
     }
 
     /**
@@ -166,7 +168,7 @@ public class Specialbeställning extends javax.swing.JFrame {
             
             try{
                 produktID = idb.fetchSingle(sqlGetPID);
-                new SpecialbeställningMaterial(idb, produktID).setVisible(true);
+                new SpecialbeställningMaterial(idb, produktID, pid).setVisible(true);
             }catch (InfException e){
                 lblFelmeddelande.setText("Problem med att hämta produktID");
             }

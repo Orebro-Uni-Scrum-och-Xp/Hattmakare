@@ -14,13 +14,15 @@ public class SpecialbeställningMaterial extends javax.swing.JFrame {
 
     private static InfDB idb;
     private String produktID;
+    private String pid;
     /**
      * Creates new form SpecialbeställningMaterial
      */
-    public SpecialbeställningMaterial(InfDB idb, String produktID) {
+    public SpecialbeställningMaterial(InfDB idb, String produktID, String pid) {
         initComponents();
         this.idb = idb;
         this.produktID = produktID;
+        this.pid = pid;
     }
 
     /**
@@ -161,7 +163,7 @@ public class SpecialbeställningMaterial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-new GuiHuvudmeny(idb).setVisible(true);         // TODO add your handling code here:
+new GuiHuvudmeny(idb, pid).setVisible(true);         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tfMaterialNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMaterialNamnActionPerformed
