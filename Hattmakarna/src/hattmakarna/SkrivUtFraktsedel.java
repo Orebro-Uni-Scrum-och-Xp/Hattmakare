@@ -185,6 +185,7 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
         
         try{
             frakt = idb.fetchRow(getFrakt);
+            System.out.println("DEBUG: Hämtad frakt: " + frakt);
         } catch (InfException e){
             lblFelmed.setText("Problem med att hämta frakten från databasen.");
         }
@@ -232,6 +233,7 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
             document.open();
 
             // Lägg till innehållet
+            System.out.println("Exportkod i databas: " + frakt.get("exportkod"));
             document.add(new Paragraph("Fraktinformation", headerFont));
             document.add(new Paragraph("--------------------------", bodyFont));
             document.add(new Paragraph("Frakt-ID: " + fraktId, bodyFont));
