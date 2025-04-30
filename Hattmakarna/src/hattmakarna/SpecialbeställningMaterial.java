@@ -227,6 +227,12 @@ new GuiHuvudmeny(idb).setVisible(true);         // TODO add your handling code h
         
         String sqlInsertProdukt_Material = "INSERT INTO produkt_material(ProduktID, MaterialID, Kvantitet) VALUES('" + this.produktID + "','" + MID + "','" + mängd + "')";
         
+        System.out.println("ProduktID: " + this.produktID);
+System.out.println("MaterialID: " + MID);
+System.out.println("Mängd: " + mängd);
+System.out.println("SQL: " + sqlInsertProdukt_Material);
+
+        
         try{
             idb.insert(sqlInsertProdukt_Material);
             
