@@ -170,8 +170,8 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="2">
-            <StringItem index="0" value="JA"/>
-            <StringItem index="1" value="NEJ"/>
+            <StringItem index="0" value="Ja"/>
+            <StringItem index="1" value="Nej"/>
           </StringArray>
         </Property>
       </Properties>
@@ -220,8 +220,8 @@
                 <Column editable="true" title="ID" type="java.lang.Object"/>
                 <Column editable="true" title="Status" type="java.lang.Object"/>
                 <Column editable="true" title="Datum" type="java.lang.Object"/>
+                <Column editable="true" title="Email" type="java.lang.Object"/>
                 <Column editable="true" title="Express" type="java.lang.Object"/>
-                <Column editable="true" title="KundID" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>

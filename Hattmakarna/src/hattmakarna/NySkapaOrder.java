@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -16,12 +17,14 @@ import oru.inf.InfException;
  */
 public class NySkapaOrder extends javax.swing.JFrame {
  private InfDB idb;
+ private String pid;
     /**
      * Creates new form NySkapaOrder
      */
-    public NySkapaOrder(InfDB idb) {
+    public NySkapaOrder(InfDB idb, String pid) {
         initComponents();
          this.idb = idb; 
+         this.pid = pid;
     }
 
     /**
@@ -56,7 +59,7 @@ public class NySkapaOrder extends javax.swing.JFrame {
         jLabel1.setText("Skapa order");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Order-ID");
+        jLabel2.setText("order-ID");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Status");
@@ -70,7 +73,7 @@ public class NySkapaOrder extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Email");
 
-        ComboExpress.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JA", "NEJ" }));
+        ComboExpress.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ja", "Nej" }));
 
         tfID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +103,7 @@ public class NySkapaOrder extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Status", "Datum", "Express", "KundID"
+                "ID", "Status", "Datum", "Email", "Express"
             }
         ));
         jScrollPane1.setViewportView(TableOrder);
@@ -201,7 +204,7 @@ public class NySkapaOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_tfIDActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-            new GuiHuvudmeny(idb).setVisible(true);
+            new GuiHuvudmeny(idb, pid).setVisible(true);
         this.dispose();    // TODO add your handling code here:
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
@@ -246,7 +249,7 @@ public class NySkapaOrder extends javax.swing.JFrame {
         kund = idb.fetchRow(kontrollFraga);
 
         if (kund == null || kund.isEmpty()) {
-         new GuiValFönster(idb).setVisible(true);
+         new GuiValFönster(idb, pid).setVisible(true);
         this.dispose(); 
         return;
           
@@ -372,3 +375,4 @@ public class NySkapaOrder extends javax.swing.JFrame {
     private javax.swing.JTextField tfStatus;
     // End of variables declaration//GEN-END:variables
 }
+
