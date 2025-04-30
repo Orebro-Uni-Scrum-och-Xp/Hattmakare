@@ -269,7 +269,7 @@ public class Huvudmeny extends javax.swing.JFrame {
 
     private void btnSpecialBeställningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSpecialBeställningActionPerformed
         // TODO add your handling code here:
-        new Specialbeställning(idb).setVisible(true);
+        new Specialbeställning(idb, pid).setVisible(true);
     }//GEN-LAST:event_btnSpecialBeställningActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -284,7 +284,7 @@ public class Huvudmeny extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
             // TODO add your handling code here:
-            new Specialbeställning(idb).setVisible(true);
+            new Specialbeställning(idb, pid).setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

@@ -226,7 +226,7 @@ private String oid;
         
         // använd oid för att hämta produkter
         String getInfo = "SELECT namn, antal, utförs_av, OrderProduktID FROM försäljning JOIN "
-                + "produkt ON Försäljning.ProduktID = produkt.ProduktID";
+                + "produkt ON Försäljning.ProduktID = produkt.ProduktID WHERE Försäljning.OID = '" + this.oid + "'";
         
         ArrayList<HashMap<String, String>> info = new ArrayList<>();
         try{

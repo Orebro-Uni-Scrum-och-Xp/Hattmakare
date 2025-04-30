@@ -134,7 +134,7 @@ if (lösenord.equals(dblosen)) {
     if (dbbehörighet == 2) { 
         new AdminMeny(idb, dbpid).setVisible(true);
     } else {
-        new GuiHuvudmeny(idb).setVisible(true);
+        new GuiHuvudmeny(idb, dbpid).setVisible(true);
     }
 } else {
     lblfelmeddelande.setText("Fel lösenord, försök igen.");
